@@ -1,0 +1,25 @@
+import axios from 'axios';
+
+import igdbConfig from './igdbConfig';
+
+const axiosConfig = axios.create({
+    baseURL: igdbConfig.baseApiUrl,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
+
+axiosConfig.interceptors.request.use(config => config);
+
+axiosConfig.interceptors.response.use(
+    response => {
+        if(response && response.data) 
+            return response.data;
+        return response;
+    },
+    error => {
+        throw error;
+    }
+)
+
+export default axiosConfig;
