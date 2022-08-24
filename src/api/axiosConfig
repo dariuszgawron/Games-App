@@ -5,7 +5,9 @@ import igdbConfig from './igdbConfig';
 const axiosConfig = axios.create({
     baseURL: igdbConfig.baseApiUrl,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Client-ID': `${igdbConfig.clientId}`,
+        'Authorization': `Bearer ${igdbConfig.clientSecret}`
     }
 });
 
