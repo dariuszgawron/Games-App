@@ -1,10 +1,11 @@
 import axiosConfig from "./axiosConfig";
-import igdbConfig from "./igdbconfig";
+// import axios from "axios";
+// import igdbConfig from "./igdbConfig";
 
 const igdbApi = {
     getGames: (queryParams) => {
         const url = 'games';
-        return axiosConfig.post(url, queryParams);
+        return axiosConfig.post(url);
     },
     getGenres: (queryParams) => {
         const url = 'genres';
