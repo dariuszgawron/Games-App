@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import GameList from '../components/GameList/GameList';
+import GameList from "../components/GameList/GameList";
 
 const sectionsConfig = [
     {}
@@ -8,8 +8,8 @@ const sectionsConfig = [
 
 const Home = () => {
     return (
-        <main className='main'>
-            <div className='main__container'>
+        <main className="main">
+            <div className="main__container">
                 <GameList />
             </div>
         </main>

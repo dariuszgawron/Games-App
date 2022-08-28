@@ -2,10 +2,10 @@ import React from "react";
 
 const Detail = () => {
     return (
-        <div>
-            
-        </div>
+        <main className="main">
+
+        </main>
     )
-};
+}
 
 export default Detail;

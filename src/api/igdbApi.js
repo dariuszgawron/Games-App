@@ -1,11 +1,9 @@
 import axiosConfig from "./axiosConfig";
-// import axios from "axios";
-// import igdbConfig from "./igdbConfig";
 
 const igdbApi = {
     getGames: (queryParams) => {
         const url = 'games';
-        return axiosConfig.post(url);
+        return axiosConfig.post(url, queryParams);
     },
     getGenres: (queryParams) => {
         const url = 'genres';
@@ -29,8 +27,7 @@ const igdbApi = {
     },
     getPlatformLogos: (queryParams) => {
         const url = 'platform_logos';
-        const data = queryParams ? queryParams : 'fields *;' 
-        return axiosConfig.post(url, data);
+        return axiosConfig.post(url, queryParams);
     },
     getCharacters: (queryParams) => {
         const url = 'characters';

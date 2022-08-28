@@ -1,12 +1,12 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
-import AppRoutes from "./config/AppRoutes";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import './App.scss';
 
-import "./App.scss";
+import AppRoutes from './config/AppRoutes';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
-const App = () => {
+function App() {
   return (
     <BrowserRouter>
       <>
@@ -16,6 +16,6 @@ const App = () => {
       </>
     </BrowserRouter>
   )
-}
+};
 
 export default App;
