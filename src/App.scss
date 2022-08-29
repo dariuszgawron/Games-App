@@ -1,0 +1,76 @@
+// GOOGLE FONTS 
+
+
+// GLOBAL VARIABLES
+:root {
+    // FONTS
+    --font-family: ;
+    --font-size-1: ;
+    --font-size-2: ;
+    --font-size-3: ;
+    --font-size-4: ;
+    --font-size-5: ;
+    --font-size-6: ;
+    --font-size-7: ;
+    --font-weight-medium: ;
+    --font-weight-semibold: ;
+    --font-weight-bold: ;
+
+    // COLORS
+    --primary-color: ;
+    --secondary-color: ;
+    --background-primary-color: ;
+    --background-secondary-color: ;
+    --border-primary-color: ;
+    --text-color-light: ;
+    --text-color-normal: ;
+    --text-color-dark: ;
+    --heading-primary-color: ;
+
+}
+
+// GENERAL STYLES & RESETS
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background-primary-color);
+    color: var(--text-color-dark);
+}
+
+h1,
+h2, 
+h3 {
+    font-weight: var(--font-weight-bold);
+    color: var(--heading-primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+// COMMON CSS CLASSES
+.container {
+
+}
+
+.section {
+    
+}

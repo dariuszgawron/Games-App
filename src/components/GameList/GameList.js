@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import igdbApi from "../../api/igdbApi";
 
+import GameCard from "../GameCard/GameCard";
+
 import "./GameList.scss";
 
 const GameList = props => {
