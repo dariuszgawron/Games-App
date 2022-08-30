@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 import igdbApi from "../../api/igdbApi";
 
@@ -14,13 +15,17 @@ const VideoList = props => {
             setVideos(response);
         };
         getVideos();
-    }, []);
+    }, [props.gameId]);
 
     return (
         <div className="video-list">
 
         </div>
     )
+};
+
+VideoList.propTypes = {
+    gameId: PropTypes.string.isRequired
 };
 
 export default VideoList;
