@@ -10,9 +10,10 @@ const ImageList = props => {
 
     useEffect(() => {
         const getImages = async () => {
-            const queryParams = `fields *; where game = ${props.gameId}`;
+            const queryParams = `fields *; where game = ${props.gameId};`;
             const response = await igdbApi.getScreenshots(queryParams);
             setImages(response);
+            console.log(response);
         };
         getImages();
     }, [props.gameId]);
@@ -21,7 +22,7 @@ const ImageList = props => {
         <div className="image-list">
             {
                 images && images.map((image, index) => (
-                    <div>
+                    <div key={index}>
                         <img src={image.url} alt={''} />
                     </div>
                 ))

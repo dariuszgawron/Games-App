@@ -11,7 +11,9 @@ import GameSwiper from "../GameSwiper/GameSwiper";
 
 const Details = () => {
     // const { id } = useParams();
-    const id = '40104';
+    const id = '11111';
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [gameDetails, setGameDetails] = useState([]);
     const [gameCover, setGamecover] = useState({});
     const [gamePlatforms, setGamePlatforms] = useState([]);
@@ -19,41 +21,75 @@ const Details = () => {
 
     useEffect(() => {
         const getGameDetails = async () => {
-            const queryParams = `fields *; id = ${id}`;
-            const response = await igdbApi.getGames(queryParams);
-            setGameDetails(response);
+            const queryParams = `fields *; where id = ${id};`;
+            try {
+                const response = await igdbApi.getGames(queryParams);
+                setGameDetails(response[0]);
+            } catch(error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+            
+            const getGameGenres = async () => {
+                const queryParams = `fields *; where id = (${gameDetails.genres.join(', ')});`
+                const response = await igdbApi.getGenres(queryParams);
+                setGameGenres(response);
+            };
+            getGameGenres()
         };
         getGameDetails();
-    }, [id]);
+        
+    }, [id, gameDetails.genres]);
 
     useEffect(() => {
         const getGameCover = async () => {
-            const queryParams = `fields *; game = ${id}`;
+            const queryParams = `fields *; where game = ${id};`;
             const response = await igdbApi.getCovers(queryParams);
-            setGamecover(response);
+            setGamecover(response[0]);
+            console.log(response);
         };
         getGameCover();
     }, [id]);
 
+    if(error) return `Error: ${error.message}`;
+
     return (
         <div className="game-details">
+            {loading && <div>Loading...</div>}
             {
-                gameDetails && (
+                !loading && gameDetails && (
                     <div className="game-details__container">
-                        {gameCover.url}
+                        <img src={gameCover.url} alt='' />
                         {gameDetails.name}
+                        {gameDetails.created_at}
+                        {gameDetails.first_release_date}
+                        {gameDetails.storyline}
+                        {gameDetails.summary}
+                        {gameDetails.url}
+
+                        {
+                            gameGenres.map((genre, index) => (
+                                <span key={index}>
+                                    {genre.name}
+                                </span>
+                            ))
+                        }
+
                         <div className="game-details__images">
                             <ImageList gameId={id} />
                         </div>
 
                         <div className="game-details__videos">
-                            <VideoList gameId={id} />
+                            {/* <VideoList gameId={id} /> */}
+                        </div>
+
+                        <div className="game-details__similar">
+                            <GameSwiper gameId={gameDetails.similar_games.join(',')}/>
                         </div>
                     </div>
                 )
             }
-            
-            
         </div>
     )
 };
