@@ -1,15 +1,52 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-import GameList from "../components/GameList/GameList";
+const GameList = React.lazy(() => import("../components/GameList/GameList"));
 
 const sectionsConfig = [
-    {}
+    {
+        title: 'Popular games',
+        link: '/games',
+        query: ''
+    },
+    {
+        title: 'Recently released',
+        link: '/games',
+        query: `fields *; where date <= ${new Date.getTime()}; sort date desc`
+    }, 
+    {
+        title: 'Coming soon',
+        link: '/games',
+        query: `fields *; where date > ${new Date.getTime()}; sort date asc`
+    },
+    {
+        title: 'Top rated',
+        link: '/games',
+        query: 'fields *; sort rating desc;'
+    }
 ];
 
 const Home = () => {
     return (
         <main className="main">
-            <GameList />
+            <Suspense>
+                <GameList query={''}/>
+            </Suspense>
+            {
+                sectionsConfig.map((section, index) => (
+                    <section className="section" key={index}>
+                        <div className="section__header">
+                            <h2 className="section__title">
+                                {section.title}
+                            </h2>
+                        </div>
+                        <div className="section__content">
+                            <Suspense>
+                                <GameList query={section.query} />
+                            </Suspense>
+                        </div>
+                    </section>
+                ))
+            }
         </main>
     )
 };

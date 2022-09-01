@@ -17,7 +17,9 @@ const Details = () => {
     const [gameDetails, setGameDetails] = useState([]);
     const [gameCover, setGamecover] = useState({});
     const [gamePlatforms, setGamePlatforms] = useState([]);
+    const [gameReleaseDates, setGameReleaseDates] = useState([]);
     const [gameGenres, setGameGenres] = useState([]);
+    const [gameSimilarGames, setGameSimilarGames] = useState([]);
 
     useEffect(() => {
         const getGameDetails = async () => {
@@ -30,27 +32,60 @@ const Details = () => {
             } finally {
                 setLoading(false);
             }
-            
-            const getGameGenres = async () => {
-                const queryParams = `fields *; where id = (${gameDetails.genres.join(', ')});`
-                const response = await igdbApi.getGenres(queryParams);
-                setGameGenres(response);
-            };
-            getGameGenres()
         };
-        getGameDetails();
-        
-    }, [id, gameDetails.genres]);
-
-    useEffect(() => {
         const getGameCover = async () => {
             const queryParams = `fields *; where game = ${id};`;
             const response = await igdbApi.getCovers(queryParams);
             setGamecover(response[0]);
             console.log(response);
         };
+        getGameDetails();
         getGameCover();
     }, [id]);
+
+    useEffect(() => {
+        if(gameDetails) {
+            const getGameGenres = async () => {
+                const queryParams = `fields *; where id = (${gameDetails.genres.join(', ')});`
+                const response = await igdbApi.getGenres(queryParams);
+                setGameGenres(response);
+            };
+            const getGamePlatforms = async () => {
+                const queryParams = `fields *; where id = (${gameDetails.genres.join(', ')});`
+                const response = await igdbApi.getPlatforms(queryParams);
+                setGamePlatforms(response);
+            };
+            const getGameSimilarGames = async () => {
+                const queryParams = `fields *; where id = (${gameDetails.similar_games.join(', ')})`;
+                const response = await igdbApi.getGames(queryParams);
+                setGameSimilarGames(response);
+            };
+            const getGameReleaseDates = async () => {
+                const queryParams = `fields *; where id = (${gameDetails.release_dates.join(', ')})`;
+                const response = await igdbApi.getReleaseDates(queryParams);
+                setGameReleaseDates(response);
+            }
+
+            if(gameDetails.genres.length()>0) {
+                getGameGenres();
+            }
+            if(gameDetails.platforms.length()>0) {
+                getGamePlatforms();
+            }
+            if(gameDetails.similar_games.length()>0) {
+                getGameSimilarGames();
+            }
+            if(gameDetails.release_dates.length()>0) {
+                getGameReleaseDates();
+            }
+        }
+    }, [gameDetails]);
+
+    // useEffect(() => {
+    //     if(gamePlatforms) {
+    //         const getGamePlatformLogo
+    //     }
+    // }, [gamePlatforms]);
 
     if(error) return `Error: ${error.message}`;
 
@@ -77,7 +112,7 @@ const Details = () => {
                         }
 
                         <div className="game-details__images">
-                            <ImageList gameId={id} />
+                            {/* <ImageList gameId={id} /> */}
                         </div>
 
                         <div className="game-details__videos">
@@ -85,7 +120,7 @@ const Details = () => {
                         </div>
 
                         <div className="game-details__similar">
-                            <GameSwiper gameId={gameDetails.similar_games.join(',')}/>
+                            {/* <GameSwiper gameId={gameDetails.similar_games.join(',')}/> */}
                         </div>
                     </div>
                 )
