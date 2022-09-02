@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 
 const GameList = React.lazy(() => import("../components/GameList/GameList"));
 
+const today = new Date();
 const sectionsConfig = [
     {
         title: 'Popular games',
@@ -11,12 +12,12 @@ const sectionsConfig = [
     {
         title: 'Recently released',
         link: '/games',
-        query: `fields *; where date <= ${new Date.getTime()}; sort date desc`
+        query: `fields *; where date <= ${today.getTime()}; sort date desc`
     }, 
     {
         title: 'Coming soon',
         link: '/games',
-        query: `fields *; where date > ${new Date.getTime()}; sort date asc`
+        query: `fields *; where date > ${today.getTime()}; sort date asc`
     },
     {
         title: 'Top rated',

@@ -12,7 +12,7 @@ import GameSwiper from "../GameSwiper/GameSwiper";
 const Details = () => {
     // const { id } = useParams();
     const id = '11111';
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [gameDetails, setGameDetails] = useState([]);
     const [gameCover, setGamecover] = useState({});
@@ -44,7 +44,7 @@ const Details = () => {
     }, [id]);
 
     useEffect(() => {
-        if(gameDetails) {
+        if(!loading && gameDetails) {
             const getGameGenres = async () => {
                 const queryParams = `fields *; where id = (${gameDetails.genres.join(', ')});`
                 const response = await igdbApi.getGenres(queryParams);
@@ -66,20 +66,20 @@ const Details = () => {
                 setGameReleaseDates(response);
             }
 
-            if(gameDetails.genres.length()>0) {
+            if(gameDetails.genres.length>0) {
                 getGameGenres();
             }
-            if(gameDetails.platforms.length()>0) {
+            if(gameDetails.platforms.length>0) {
                 getGamePlatforms();
             }
-            if(gameDetails.similar_games.length()>0) {
+            if(gameDetails.similar_games.length>0) {
                 getGameSimilarGames();
             }
-            if(gameDetails.release_dates.length()>0) {
+            if(gameDetails.release_dates.length>0) {
                 getGameReleaseDates();
             }
         }
-    }, [gameDetails]);
+    }, [gameDetails, loading]);
 
     // useEffect(() => {
     //     if(gamePlatforms) {
