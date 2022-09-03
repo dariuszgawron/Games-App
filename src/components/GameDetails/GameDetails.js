@@ -95,7 +95,7 @@ const Details = () => {
             {
                 !loading && gameDetails && (
                     <div className="game-details__container">
-                        <img src={gameCover.url} alt='' />
+                        <img className="game-details__image" src={gameCover.url} alt='' />
                         {gameDetails.name}
                         {gameDetails.created_at}
                         {gameDetails.first_release_date}
