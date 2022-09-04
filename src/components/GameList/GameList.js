@@ -32,7 +32,7 @@ const GameList = props => {
                 games && games.length>0 ? (
                     <Swiper
                         spaceBetween={15}
-                        slidesPerView={1}
+                        slidesPerView={2}
                     >
                         {
                             games.map((game, index) => (

@@ -56,12 +56,12 @@ const Details = () => {
                 setGamePlatforms(response);
             };
             const getGameSimilarGames = async () => {
-                const queryParams = `fields *; where id = (${gameDetails.similar_games.join(', ')})`;
+                const queryParams = `fields *; where id = (${gameDetails.similar_games.join(', ')});`;
                 const response = await igdbApi.getGames(queryParams);
                 setGameSimilarGames(response);
             };
             const getGameReleaseDates = async () => {
-                const queryParams = `fields *; where id = (${gameDetails.release_dates.join(', ')})`;
+                const queryParams = `fields *; where id = (${gameDetails.release_dates.join(', ')});`;
                 const response = await igdbApi.getReleaseDates(queryParams);
                 setGameReleaseDates(response);
             }

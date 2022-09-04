@@ -7,17 +7,17 @@ const sectionsConfig = [
     {
         title: 'Popular games',
         link: '/games',
-        query: ''
+        query: 'fields *;'
     },
     {
         title: 'Recently released',
         link: '/games',
-        query: `fields *; where date <= ${today.getTime()}; sort date desc`
+        query: `fields *; where date <= ${today.getTime()}; sort date desc;`
     }, 
     {
         title: 'Coming soon',
         link: '/games',
-        query: `fields *; where date > ${today.getTime()}; sort date asc`
+        query: `fields *; where date > ${today.getTime()}; sort date asc;`
     },
     {
         title: 'Top rated',
