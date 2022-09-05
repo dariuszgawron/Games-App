@@ -13,18 +13,28 @@ import "./GameList.scss";
 
 const GameList = props => {
     const [games, setGames] = useState([]);
+    const [covers, setCovers] = useState([]);
     const navPrevRef = useRef(null);
     const navNextRef = useRef(null);
 
     useEffect(() => {
         const getGames = async () => {
-            let response = null;
             const queryParams = props.query ? props.query : 'fields *;';
-            response = await igdbApi.getGames(queryParams);
+            const response = await igdbApi.getGames(queryParams);
             setGames(response);
         };
         getGames();
     }, [props.query]);
+
+    useEffect(() => {
+        const getCovers = async () => {
+            const gameIds = games.map(game => game.id).join(',');
+            const queryParams = `fields *; where game = ${gameIds};`;
+            const response = await igdbApi.getCovers(queryParams);
+            setCovers(response);
+        };
+        getCovers();
+    }, [games]);
 
     return (
         <div className="game-list">
@@ -33,11 +43,30 @@ const GameList = props => {
                     <Swiper
                         spaceBetween={15}
                         slidesPerView={2}
+                        modules={[Navigation]}
+                        navigation={{
+                            prevEl: navPrevRef.current,
+                            nextEl: navNextRef.current
+                        }}
+                        breakpoints={{
+                            578: {
+                                slidesPerView: 3
+                            },
+                            768: {
+                                slidesPerView: 4
+                            },
+                            1100: {
+                                slidesPerView: 5
+                            },
+                            1300: {
+                                slidesPerView: 6
+                            }
+                        }}
                     >
                         {
                             games.map((game, index) => (
                                 <SwiperSlide key={index}>
-                                    <GameCard game={game} />
+                                    <GameCard game={game} cover={covers.find(cover => cover.game === game.id)} />
                                 </SwiperSlide>  
                             ))
                         }

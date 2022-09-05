@@ -7,25 +7,25 @@ import igdbApi from "../../api/igdbApi";
 import "./GameCard.scss";
 
 const GameCard = props => {
-    const [cover, setCover] = useState('');
+    // const [cover, setCover] = useState('');
 
-    useEffect(() => {
-        const getCover = async () => {
-            const queryParams = `fields *; where game = ${props.game.cover};`;
-            const response = await igdbApi.getCovers(queryParams);
-            setCover(response[0]);
-        };
-        if(props.game.cover) {
-            getCover();
-        }
-    }, [props.game.cover]);
+    // useEffect(() => {
+    //     const getCover = async () => {
+    //         const queryParams = `fields *; where game = ${props.game.cover};`;
+    //         const response = await igdbApi.getCovers(queryParams);
+    //         setCover(response[0]);
+    //     };
+    //     if(props.game.cover) {
+    //         getCover();
+    //     }
+    // }, [props.game.cover]);
 
     return (
         <div className="game-card">
             <Link className="game-card__link" to={`/games/${props.game.id}`}>
                 {
-                    cover ? (
-                        <img className="game-card__cover" src={cover.url} alt={`${props.game.name} - cover`} />
+                    props.cover ? (
+                        <img className="game-card__cover" src={props.cover.url} alt={`${props.game.name} - cover`} />
                     ) : (
                         <div className="game-card__backdrop">
                             <i className="game-card__backdrop-icon bx bx-bug"></i>

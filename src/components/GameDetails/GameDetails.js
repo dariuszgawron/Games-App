@@ -10,12 +10,12 @@ import VideoList from "../VideoList/VideoList";
 import GameSwiper from "../GameSwiper/GameSwiper";
 
 const Details = () => {
-    // const { id } = useParams();
-    const id = '11111';
+    const { id } = useParams();
+    // const id = '11111';
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [gameDetails, setGameDetails] = useState([]);
-    const [gameCover, setGamecover] = useState({});
+    const [gameCover, setGamecover] = useState('');
     const [gamePlatforms, setGamePlatforms] = useState([]);
     const [gameReleaseDates, setGameReleaseDates] = useState([]);
     const [gameGenres, setGameGenres] = useState([]);
@@ -36,8 +36,10 @@ const Details = () => {
         const getGameCover = async () => {
             const queryParams = `fields *; where game = ${id};`;
             const response = await igdbApi.getCovers(queryParams);
-            setGamecover(response[0]);
-            console.log(response);
+            if(response[0]) {
+                setGamecover(response[0].url);
+            }
+            // console.log(response);
         };
         getGameDetails();
         getGameCover();
@@ -51,7 +53,7 @@ const Details = () => {
                 setGameGenres(response);
             };
             const getGamePlatforms = async () => {
-                const queryParams = `fields *; where id = (${gameDetails.genres.join(', ')});`
+                const queryParams = `fields *; where id = (${gameDetails.platforms.join(', ')});`
                 const response = await igdbApi.getPlatforms(queryParams);
                 setGamePlatforms(response);
             };
@@ -66,16 +68,16 @@ const Details = () => {
                 setGameReleaseDates(response);
             }
 
-            if(gameDetails.genres.length>0) {
+            if(gameDetails.genres && gameDetails.genres.length>0) {
                 getGameGenres();
             }
-            if(gameDetails.platforms.length>0) {
+            if(gameDetails.platforms && gameDetails.platforms.length>0) {
                 getGamePlatforms();
             }
-            if(gameDetails.similar_games.length>0) {
+            if(gameDetails.similar && gameDetails.similar_games.length>0) {
                 getGameSimilarGames();
             }
-            if(gameDetails.release_dates.length>0) {
+            if(gameDetails.release_dates && gameDetails.release_dates.length>0) {
                 getGameReleaseDates();
             }
         }
