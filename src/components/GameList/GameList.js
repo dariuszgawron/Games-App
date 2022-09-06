@@ -14,12 +14,13 @@ import "./GameList.scss";
 const GameList = props => {
     const [games, setGames] = useState([]);
     const [covers, setCovers] = useState([]);
-    const navPrevRef = useRef(null);
-    const navNextRef = useRef(null);
+    // const navPrevRef = useRef(null);
+    // const navNextRef = useRef(null);
 
     useEffect(() => {
+        console.log(props.query);
         const getGames = async () => {
-            const queryParams = props.query ? props.query : 'fields *;';
+            const queryParams = props.query ? props.query : 'fields *; limit 20;';
             const response = await igdbApi.getGames(queryParams);
             setGames(response);
         };
@@ -29,11 +30,14 @@ const GameList = props => {
     useEffect(() => {
         const getCovers = async () => {
             const gameIds = games.map(game => game.id).join(',');
-            const queryParams = `fields *; where game = ${gameIds};`;
+            console.log(gameIds);
+            const queryParams = `fields *; where game = (${gameIds}); limit 20;`;
             const response = await igdbApi.getCovers(queryParams);
             setCovers(response);
         };
-        getCovers();
+        if(games.length>0) {
+            getCovers();
+        }
     }, [games]);
 
     return (
@@ -45,8 +49,12 @@ const GameList = props => {
                         slidesPerView={2}
                         modules={[Navigation]}
                         navigation={{
-                            prevEl: navPrevRef.current,
-                            nextEl: navNextRef.current
+                            prevEl: props.navPrevRef.current,
+                            nextEl: props.navNextRef.current
+                        }}
+                        onBeforeInit={(swiper) => {
+                            swiper.params.navigation.prevEl = props.navPrevRef.current;
+                            swiper.params.navigation.nextEl = props.navNextRef.current;
                         }}
                         breakpoints={{
                             578: {
@@ -66,7 +74,7 @@ const GameList = props => {
                         {
                             games.map((game, index) => (
                                 <SwiperSlide key={index}>
-                                    <GameCard game={game} cover={covers.find(cover => cover.game === game.id)} />
+                                    <GameCard game={game} cover={covers.find(cover => cover.game === game.id) || {} } />
                                 </SwiperSlide>  
                             ))
                         }

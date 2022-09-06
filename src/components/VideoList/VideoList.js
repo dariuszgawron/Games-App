@@ -10,7 +10,7 @@ const VideoList = props => {
 
     useEffect(() => {
         const getVideos = async () => {
-            const queryParams = `fields *; where game = ${props.gameId}`;
+            const queryParams = `fields *; where game = ${props.gameId};`;
             const response = await igdbApi.getVideos(queryParams);
             setVideos(response);
         };

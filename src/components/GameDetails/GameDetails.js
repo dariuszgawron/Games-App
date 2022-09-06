@@ -7,11 +7,17 @@ import "./GameDetails.scss";
 
 import ImageList from "../ImageList/ImageList";
 import VideoList from "../VideoList/VideoList";
-import GameSwiper from "../GameSwiper/GameSwiper";
+// import GameSwiper from "../GameSwiper/GameSwiper";
+import GameList from "../GameList/GameList";
+
+const getDate = (unixTimestamp) => {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const date = new Date(unixTimestamp*1000);
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+}
 
 const Details = () => {
     const { id } = useParams();
-    // const id = '11111';
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [gameDetails, setGameDetails] = useState([]);
@@ -92,37 +98,38 @@ const Details = () => {
     if(error) return `Error: ${error.message}`;
 
     return (
-        <div className="game-details">
+        <div className="game-details container">
             {loading && <div>Loading...</div>}
             {
                 !loading && gameDetails && (
                     <div className="game-details__container">
-                        <img className="game-details__image" src={gameCover.url} alt='' />
-                        {gameDetails.name}
-                        {gameDetails.created_at}
-                        {gameDetails.first_release_date}
-                        {gameDetails.storyline}
-                        {gameDetails.summary}
-                        {gameDetails.url}
+                        <img className="game-details__cover" src={gameCover} alt='' /><br />
+                        {gameDetails.name}<br /><br />
+                        {getDate(gameDetails.created_at)} <br /><br />
+                        {getDate(gameDetails.first_release_date)} <br/><br />
+                        {gameDetails.storyline} <br/><br />
+                        {gameDetails.summary} <br/><br />
+                        {gameDetails.url} <br/><br/>
 
                         {
                             gameGenres.map((genre, index) => (
                                 <span key={index}>
-                                    {genre.name}
+                                    {`${genre.name}, `}
                                 </span>
                             ))
                         }
 
                         <div className="game-details__images">
-                            {/* <ImageList gameId={id} /> */}
+                            <ImageList gameId={id} />
                         </div>
 
                         <div className="game-details__videos">
-                            {/* <VideoList gameId={id} /> */}
+                            <VideoList gameId={id} />
                         </div>
 
                         <div className="game-details__similar">
                             {/* <GameSwiper gameId={gameDetails.similar_games.join(',')}/> */}
+                            <GameList gameId={gameDetails.similar_games.join(',')} />
                         </div>
                     </div>
                 )
