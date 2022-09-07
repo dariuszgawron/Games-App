@@ -1,7 +1,12 @@
 .game-card {
+    margin: .2rem 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 
     &__link {
-
+        text-decoration: none;
+        color: var(--text-color-dark);
     }
 
     &__cover {
@@ -17,10 +22,34 @@
     }
 
     &__data {
-
+        padding: .5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: .5rem;
+        text-align: center;
     }
 
     &__info {
+        display: flex;
+        flex-direction: column;
+        row-gap: .5rem;
+    }
 
+    &__platforms {
+
+    }
+
+    &__rating {
+
+        &-text {
+
+        }
+    }
+
+    &__title {
+        font-size: var(--font-size-5);
+        color: var(--text-color-dark);
+        font-weight: var(--font-weight-bold);
     }
 }

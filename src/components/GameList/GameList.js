@@ -46,28 +46,28 @@ const GameList = props => {
                 games && games.length>0 ? (
                     <Swiper
                         spaceBetween={15}
-                        slidesPerView={2}
-                        modules={[Navigation]}
-                        navigation={{
-                            prevEl: props.navPrevRef.current,
-                            nextEl: props.navNextRef.current
-                        }}
-                        onBeforeInit={(swiper) => {
-                            swiper.params.navigation.prevEl = props.navPrevRef.current;
-                            swiper.params.navigation.nextEl = props.navNextRef.current;
-                        }}
+                        slidesPerView={1}
+                        // modules={[Navigation]}
+                        // navigation={{
+                        //     prevEl: props.navPrevRef.current,
+                        //     nextEl: props.navNextRef.current
+                        // }}
+                        // onBeforeInit={(swiper) => {
+                        //     swiper.params.navigation.prevEl = props.navPrevRef.current;
+                        //     swiper.params.navigation.nextEl = props.navNextRef.current;
+                        // }}
                         breakpoints={{
                             578: {
-                                slidesPerView: 3
+                                slidesPerView: 2
                             },
                             768: {
-                                slidesPerView: 4
+                                slidesPerView: 3
                             },
                             1100: {
-                                slidesPerView: 5
+                                slidesPerView: 4
                             },
                             1300: {
-                                slidesPerView: 6
+                                slidesPerView: 5
                             }
                         }}
                     >

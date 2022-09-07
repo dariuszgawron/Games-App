@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import igdbApi from "../../api/igdbApi";
+import igdbConfig, { coverSize } from "../../api/igdbConfig";
 
 import "./GameDetails.scss";
 
 import ImageList from "../ImageList/ImageList";
 import VideoList from "../VideoList/VideoList";
-// import GameSwiper from "../GameSwiper/GameSwiper";
 import GameList from "../GameList/GameList";
 
 const getDate = (unixTimestamp) => {
@@ -43,7 +43,7 @@ const Details = () => {
             const queryParams = `fields *; where game = ${id};`;
             const response = await igdbApi.getCovers(queryParams);
             if(response[0]) {
-                setGamecover(response[0].url);
+                setGamecover(response[0].image_id);
             }
             // console.log(response);
         };
@@ -103,8 +103,12 @@ const Details = () => {
             {
                 !loading && gameDetails && (
                     <div className="game-details__container">
-                        <img className="game-details__cover" src={gameCover} alt='' /><br />
-                        {gameDetails.name}<br /><br />
+                        <img className="game-details__cover" src={igdbConfig.imageUrl(coverSize.big, gameCover)} alt='' />
+                        <div className="game-details__info">
+                            <h2 className="game-details__title">{gameDetails.name}</h2>
+
+                        </div>
+                        <br /><br />
                         {getDate(gameDetails.created_at)} <br /><br />
                         {getDate(gameDetails.first_release_date)} <br/><br />
                         {gameDetails.storyline} <br/><br />
@@ -129,7 +133,11 @@ const Details = () => {
 
                         <div className="game-details__similar">
                             {/* <GameSwiper gameId={gameDetails.similar_games.join(',')}/> */}
-                            <GameList gameId={gameDetails.similar_games.join(',')} />
+                            {   
+                                gameDetails.similar_games && (
+                                    <GameList gameId={gameDetails.similar_games.join(',')} />
+                                )
+                            }
                         </div>
                     </div>
                 )

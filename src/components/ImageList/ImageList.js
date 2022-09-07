@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import igdbApi from "../../api/igdbApi";
 
+import igdbConfig, { screenshotSize } from "../../api/igdbConfig";
+
 import "./ImageList.scss";
 
 const ImageList = props => {
@@ -23,7 +25,7 @@ const ImageList = props => {
             {
                 images && images.map((image, index) => (
                     <div key={index}>
-                        <img src={image.url} alt={''} />
+                        <img src={igdbConfig.imageUrl(screenshotSize.size700p, image.image_id)} alt={''} />
                     </div>
                 ))
             }
