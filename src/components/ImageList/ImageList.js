@@ -24,8 +24,8 @@ const ImageList = props => {
         <div className="image-list">
             {
                 images && images.map((image, index) => (
-                    <div key={index}>
-                        <img src={igdbConfig.imageUrl(screenshotSize.size700p, image.image_id)} alt={''} />
+                    <div className="image-list__item" key={index}>
+                        <img className="image-list__img" src={igdbConfig.imageUrl(screenshotSize.size700p, image.image_id)} alt={''} />
                     </div>
                 ))
             }

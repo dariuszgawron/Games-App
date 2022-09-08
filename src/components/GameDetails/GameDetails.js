@@ -45,7 +45,6 @@ const Details = () => {
             if(response[0]) {
                 setGamecover(response[0].image_id);
             }
-            // console.log(response);
         };
         getGameDetails();
         getGameCover();
@@ -59,8 +58,10 @@ const Details = () => {
                 setGameGenres(response);
             };
             const getGamePlatforms = async () => {
-                const queryParams = `fields *; where id = (${gameDetails.platforms.join(', ')});`
+                const queryParams = `fields *, platform.*; where id = (${gameDetails.platforms.join(', ')});`
                 const response = await igdbApi.getPlatforms(queryParams);
+                console.log('test');
+                console.log(response);
                 setGamePlatforms(response);
             };
             const getGameSimilarGames = async () => {
@@ -69,7 +70,7 @@ const Details = () => {
                 setGameSimilarGames(response);
             };
             const getGameReleaseDates = async () => {
-                const queryParams = `fields *; where id = (${gameDetails.release_dates.join(', ')});`;
+                const queryParams = `fields *, platform.name; where id = (${gameDetails.release_dates.join(', ')});`;
                 const response = await igdbApi.getReleaseDates(queryParams);
                 setGameReleaseDates(response);
             }
@@ -105,31 +106,98 @@ const Details = () => {
                     <div className="game-details__container">
                         <img className="game-details__cover" src={igdbConfig.imageUrl(coverSize.big, gameCover)} alt='' />
                         <div className="game-details__info">
-                            <h2 className="game-details__title">{gameDetails.name}</h2>
-
-                        </div>
-                        <br /><br />
-                        {getDate(gameDetails.created_at)} <br /><br />
-                        {getDate(gameDetails.first_release_date)} <br/><br />
-                        {gameDetails.storyline} <br/><br />
-                        {gameDetails.summary} <br/><br />
-                        {gameDetails.url} <br/><br/>
-
-                        {
-                            gameGenres.map((genre, index) => (
-                                <span key={index}>
-                                    {`${genre.name}, `}
+                            <h2 className="game-details__title game-details__title--center">{gameDetails.name}</h2>
+                            <hr />
+                            <div className="game-details__genres">
+                                {/* <span className="game-details__genres-label">Genres: </span> */}
+                                {
+                                    gameGenres.map((genre, index) => (
+                                        <span className="game-details__genres-item" key={index}>
+                                            {`${genre.name}`}
+                                        </span>
+                                    ))
+                                }
+                            </div>
+                            <div className="game-details__platforms">
+                                <span className="game-details__platforms-label">Platforms: </span>
+                                {
+                                    gamePlatforms.map((platform, index) => (
+                                        <span className="game-details__platforms-item" key={index}>
+                                            {`${platform.name}`}
+                                        </span>
+                                    ))
+                                }
+                            </div>
+                            <div className="game-details__release-date">
+                                <span className="game-details__release-date-label">Release date: </span>
+                                <span className="game-details__release-date-item">
+                                    {/* {getDate(gameDetails.created_at)} */}
+                                    {getDate(gameDetails.first_release_date)}
                                 </span>
-                            ))
-                        }
+                            </div>
+                            <div className="game-details__ratings">
+                                
+                            </div>
+                        </div>
+                        <div className="game-details__nav">
+                            <ul className="game-details__nav-pills">
+                                <li className="game-details__nav-pill">
+                                    Description
+                                </li>
+                                <li className="game-details__nav-pill">
+                                    Gallery
+                                </li>
+                                <li className="game-details__nav-pill">
+                                    Trailers
+                                </li>
+                                <li className="game-details__nav-pill">
+                                    Details
+                                </li>
+                                <li className="game-details__nav-pill">
+                                    Links
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="game-details__tab-content">
+                            {gameDetails.storyline}
 
-                        <div className="game-details__images">
-                            <ImageList gameId={id} />
+                            {gameDetails.summary}
+                        </div>
+                        
+                        <div className="game-details__tab-content">
+                            <div className="game-details__images">
+                                <ImageList gameId={id} />
+                            </div>
                         </div>
 
-                        <div className="game-details__videos">
-                            <VideoList gameId={id} />
+                        <div className="game-details__tab-content">
+                            <div className="game-details__videos">
+                                <VideoList gameId={id} />
+                            </div>
                         </div>
+
+                        <div className="game-details__tab-content">
+                            Release dates: <br/>
+                            {
+                                gameReleaseDates.map((releaseDate, index) => (
+                                    <span key={index}>
+                                        {releaseDate.platform.name} - {releaseDate.human}
+                                    </span>
+                                ))
+                            }
+                            Developers: <br/>
+                            
+                            Publishers: <br/>
+
+                            Age rating: <br/>
+                        </div>
+
+                        <div className="game-details__tab-content">
+                            {gameDetails.url} <br/><br/>
+                            
+                        </div>
+
+
 
                         <div className="game-details__similar">
                             {/* <GameSwiper gameId={gameDetails.similar_games.join(',')}/> */}
