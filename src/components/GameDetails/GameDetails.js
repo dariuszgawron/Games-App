@@ -203,7 +203,7 @@ const Details = () => {
                             {/* <GameSwiper gameId={gameDetails.similar_games.join(',')}/> */}
                             {   
                                 gameDetails.similar_games && (
-                                    <GameList gameId={gameDetails.similar_games.join(',')} />
+                                    <GameList title='Similar games' gameId={gameDetails.similar_games.join(',')} />
                                 )
                             }
                         </div>
