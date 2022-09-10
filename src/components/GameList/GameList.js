@@ -18,9 +18,8 @@ const GameList = props => {
     const navNextRef = useRef(null);
 
     useEffect(() => {
-        console.log(props.query);
         const getGames = async () => {
-            const queryParams = props.query ? props.query : 'fields *; limit 20;';
+            const queryParams = props.query ? props.query : 'fields *, cover.*, platforms.*; limit 20;';
             const response = await igdbApi.getGames(queryParams);
             setGames(response);
         };

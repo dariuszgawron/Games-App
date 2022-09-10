@@ -15,7 +15,6 @@ const ImageList = props => {
             const queryParams = `fields *; where game = ${props.gameId};`;
             const response = await igdbApi.getScreenshots(queryParams);
             setImages(response);
-            console.log(response);
         };
         getImages();
     }, [props.gameId]);

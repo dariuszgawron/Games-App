@@ -28,6 +28,25 @@ const Details = () => {
     const [gameSimilarGames, setGameSimilarGames] = useState([]);
 
     useEffect(() => {
+        const getGameDetails2 = async () => {
+            const queryParams = `
+                fields *, 
+                cover.*,
+                genres.*,
+                release_dates.*, release_dates.platform.*,
+                platforms.*, platforms.platform_logo.*,
+                screenshots.*,
+                similar_games.*; 
+                where id = ${id};`;
+            try {
+                const response = await igdbApi.getGames(queryParams);
+                setGameDetails(response[0]);
+            } catch(error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
         const getGameDetails = async () => {
             const queryParams = `fields *; where id = ${id};`;
             try {
@@ -197,10 +216,7 @@ const Details = () => {
                             
                         </div>
 
-
-
                         <div className="game-details__similar">
-                            {/* <GameSwiper gameId={gameDetails.similar_games.join(',')}/> */}
                             {   
                                 gameDetails.similar_games && (
                                     <GameList title='Similar games' gameId={gameDetails.similar_games.join(',')} />

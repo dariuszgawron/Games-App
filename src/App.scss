@@ -1,10 +1,10 @@
 // GOOGLE FONTS 
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 // GLOBAL VARIABLES
 :root {
     // FONTS
-    --font-family: ;
+    --font-family: 'Poppins', sans-serif;
     --font-size-1: 2.5rem;
     --font-size-2: 2rem;
     --font-size-3: 1.75rem;
@@ -17,15 +17,15 @@
     --font-weight-bold: 700;
 
     // COLORS
-    --primary-color: ;
-    --secondary-color: ;
-    --background-primary-color: ;
-    --background-secondary-color: ;
+    --primary-color: rgb(246, 44, 132);
+    --secondary-color: rgb(168, 92, 249);
+    --background-primary-color: rgb(252, 252, 252);
+    --background-secondary-color: rgb(255, 255, 255);
     --border-primary-color: ;
     --text-color-light: rgb(255, 255, 255);
-    --text-color-normal: ;
-    --text-color-dark: rgb(0,0,0);
-    --heading-primary-color: ;
+    --text-color-normal: rgb(219, 219, 219);
+    --text-color-dark: rgb(0, 0, 0);
+    --heading-primary-color: rgb(0, 0, 0);
 
 }
 
