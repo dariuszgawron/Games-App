@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import igdbConfig, { screenshotSize } from "../../api/igdbConfig";
+import igdbConfig, { imageSize } from "../../api/igdbConfig";
 
 import "./HeroSlide.scss";
 

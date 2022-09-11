@@ -1,15 +1,15 @@
-export const coverSize = {
-    big: 'cover_big',
-    small: 'cover_small'
-};
-
-export const screenshotSize = {
-    huge: 'screenshot_huge',
-    big: 'screenshot_big',
-    medium: 'screenshot_med',
-    size700p: '720p',
+export const imageSize = {
+    micro: 'micro',
+    thumb: 'thumb',
+    coverSmall: 'cover_small',
+    logoMedium: 'logo_med', 
+    coverBig: 'cover_big',
+    screenshotMedium: 'screenshot_med',
+    screenshotBig: 'screenshot_big',
+    screenshotHuge: 'screenshot_huge',
+    size720p: '720p',
     size1080p: '1080p'
-};
+}
 
 const igdbConfig = {
     // baseApiUrl: 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/',

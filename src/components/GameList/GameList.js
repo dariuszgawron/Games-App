@@ -13,30 +13,17 @@ import "./GameList.scss";
 
 const GameList = props => {
     const [games, setGames] = useState([]);
-    const [covers, setCovers] = useState([]);
     const navPrevRef = useRef(null);
     const navNextRef = useRef(null);
 
     useEffect(() => {
         const getGames = async () => {
-            const queryParams = props.query ? props.query : 'fields *, cover.*, platforms.*; limit 20;';
+            const queryParams = props.query ? props.query : 'fields *, cover.*, platforms.*, platforms.platform_logo.*; limit 20;';
             const response = await igdbApi.getGames(queryParams);
             setGames(response);
         };
         getGames();
     }, [props.query]);
-
-    useEffect(() => {
-        const getCovers = async () => {
-            const gameIds = games.map(game => game.id).join(',');
-            const queryParams = `fields *; where game = (${gameIds}); limit 20;`;
-            const response = await igdbApi.getCovers(queryParams);
-            setCovers(response);
-        };
-        if(games.length>0) {
-            getCovers();
-        }
-    }, [games]);
 
     return (
         <section className="game-list section container">
@@ -86,7 +73,7 @@ const GameList = props => {
                             {
                                 games.map((game, index) => (
                                     <SwiperSlide key={index}>
-                                        <GameCard game={game} cover={covers.find(cover => cover.game === game.id) || {} } />
+                                        <GameCard game={game} />
                                     </SwiperSlide>  
                                 ))
                             }
