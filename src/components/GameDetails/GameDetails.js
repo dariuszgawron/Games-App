@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import igdbApi from "../../api/igdbApi";
-import igdbConfig, { imageSize } from "../../api/igdbConfig";
+import igdbConfig, { imageSize, websitesCategory } from "../../api/igdbConfig";
 
 import "./GameDetails.scss";
 
@@ -32,6 +32,9 @@ const Details = () => {
                 genres.*,
                 release_dates.*, release_dates.platform.*,
                 platforms.*, platforms.platform_logo.*,
+                involved_companies.*,involved_companies.company.*,
+                game_engines.*,
+                websites.*,
                 screenshots.*,
                 videos.*; 
                 where id = ${id};`;
@@ -102,8 +105,8 @@ const Details = () => {
                                 </span>
                             </div>
                             <div className="game-details__ratings">
-                                {gameDetails.rating || '--'} / {gameDetails.rating_count || '--'}<br/>
-                                {gameDetails.aggregated_rating || '--'} / {gameDetails.aggregated_rating_count || '--'}
+                                {gameDetails.rating ? Math.round(gameDetails.rating) : '--'} / {gameDetails.rating_count || '--'}<br/>
+                                {gameDetails.aggregated_rating ? Math.round(gameDetails.aggregated_rating) : '--'} / {gameDetails.aggregated_rating_count || '--'}
                             </div>
                         </div>
                         <div className="game-details__nav">
@@ -148,21 +151,67 @@ const Details = () => {
                             {
                                 ('release_dates' in gameDetails) 
                                 ?   gameDetails.release_dates.map((releaseDate, index) => (
-                                        <span key={index}>
+                                        <span className="" key={index}>
                                             {releaseDate.platform.name} - {releaseDate.human}
                                         </span>
                                     ))
                                 :   'No data'
-                            }
-                            Developers: <br/>
+                            }<br/>
+                            Developers:
+                            {
+                                ('involved_companies' in gameDetails)
+                                ?   gameDetails.involved_companies
+                                        .filter(company => company.developer === true)
+                                        .map((developer, index) => (
+                                            <span className="" key={index}>
+                                                {developer.company.name}
+                                            </span>
+                                        ))
+                                :   'No data'
+                            }<br/>
                             
-                            Publishers: <br/>
+                            Publishers:
+                            {
+                                ('involved_companies' in gameDetails)
+                                ?   gameDetails.involved_companies
+                                        .filter(company => company.publisher === true)
+                                        .map((publisher, index) => (
+                                            <span className="" key={index}>
+                                                {publisher.company.name}
+                                            </span>
+                                        ))
+                                :   'No data'
+                            }<br/>
 
-                            Age rating: <br/>
+                            Age rating: 
+                            {
+
+                            }<br/>
+
+                            Game engine: 
+                            {
+                                ('game_engines' in gameDetails)
+                                ?   gameDetails.game_engines.map((gameEngine, index) => (
+                                        <span className="" key={index}>
+                                            {gameEngine.name}
+                                        </span>    
+                                    ))
+                                :   'No data'
+                            }
                         </div>
 
                         <div className="game-details__tab-content">
-                            {gameDetails.url}
+                            {gameDetails.url}<br/>
+                            Websites:
+                            {
+                                ('websites' in gameDetails)
+                                ?   gameDetails.websites.map((website, index) => (
+                                        <span className="" key={index}>
+                                            {`${website.url} | ${websitesCategory[website.category]}`}<br/>
+                                        </span>
+                                    ))
+                                :   'No data'
+                            }
                         </div>
 
                         <div className="game-details__similar">

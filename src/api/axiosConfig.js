@@ -28,4 +28,3 @@ axiosConfig.interceptors.response.use(
 );
 
 export default axiosConfig;
-

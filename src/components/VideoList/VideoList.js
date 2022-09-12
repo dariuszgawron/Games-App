@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import igdbApi from "../../api/igdbApi";
+import igdbConfig from "../../api/igdbConfig";
 
 import "./VideoList.scss";
 
@@ -19,7 +20,18 @@ const VideoList = props => {
 
     return (
         <div className="video-list">
-
+            {
+                videos && videos.map((video, index) => (
+                    <iframe 
+                        className="tvideo-list__item"
+                        src={igdbConfig.videoUrl(video.video_id)}
+                        key={index}
+                        title={video.name}
+                        allowFullScreen
+                    >
+                    </iframe>
+                ))
+            }
         </div>
     )
 };
