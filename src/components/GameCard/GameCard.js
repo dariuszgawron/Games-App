@@ -15,14 +15,11 @@ const GameCard = props => {
                         <img className="game-card__cover" src={igdbConfig.imageUrl(imageSize.coverBig, props.game.cover.image_id)} alt={`${props.game.name} - cover`} />
                     ) : (
                         <div className="game-card__backdrop">
-                            <i className="game-card__backdrop-icon bx bx-bug"></i>
+                            <i className="game-card__backdrop-icon bx bx-game"></i>
                         </div>
                     )
                 }
                 <div className="game-card__data">
-                    <h3 className="game-card__title">
-                        {props.game.name}
-                    </h3>
                     <div className="game-card__info">
                         <div className="game-card__platforms">
                             PS | XO
@@ -38,7 +35,9 @@ const GameCard = props => {
                             </span>
                         </div>
                     </div>
-                    
+                    <h3 className="game-card__title">
+                        {props.game.name}
+                    </h3>
                 </div>
             </Link>
         </div>

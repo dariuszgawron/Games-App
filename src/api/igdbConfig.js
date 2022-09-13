@@ -29,7 +29,7 @@ export const websitesCategory = {
     16: 'Epic games',
     17: 'GOG',
     18: 'Discord'
-}
+};
 
 const igdbConfig = {
     // baseApiUrl: 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/',
@@ -37,7 +37,8 @@ const igdbConfig = {
     clientId: process.env.REACT_APP_IGDB_CLIENT_ID,
     accessToken: process.env.REACT_APP_IGDB_ACCESS_TOKEN,
     imageUrl: (imageSize, imagePath) => `https://images.igdb.com/igdb/image/upload/t_${imageSize}/${imagePath}.jpg`,
-    videoUrl: videoKey => `https://youtube.com/embed/${videoKey}`
+    videoUrl: videoKey => `https://youtube.com/embed/${videoKey}`,
+    swiperItems: 15
 };
 
 export default igdbConfig;

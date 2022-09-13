@@ -217,7 +217,7 @@ const Details = () => {
                         <div className="game-details__similar">
                             {   
                                 gameDetails.similar_games && (
-                                    <GameList title='Similar games' gameId={gameDetails.similar_games.join(',')} />
+                                    <GameList title='Similar games' query={`fields *, cover.*, platforms.*, platforms.platform_logo.*; where id=(${gameDetails.similar_games.join(',')}); limit ${igdbConfig.swiperItems};`}/>
                                 )
                             }
                         </div>

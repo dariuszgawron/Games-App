@@ -67,13 +67,18 @@ const GameList = props => {
                                 },
                                 1300: {
                                     slidesPerView: 5
+                                },
+                                1400: {
+                                    slidesPerView: 6
                                 }
                             }}
                         >
                             {
                                 games.map((game, index) => (
                                     <SwiperSlide key={index}>
-                                        <GameCard game={game} />
+                                        <div className="media-list__content">
+                                            <GameCard game={game} />
+                                        </div>
                                     </SwiperSlide>  
                                 ))
                             }
