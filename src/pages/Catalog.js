@@ -1,11 +1,15 @@
 import React from "react";
 
-import GameList from "../components/GameList/GameList";
+import PageHeader from "../components/PageHeader/PageHeader";
+import GameGrid from "../components/GameGrid/GameGrid";
 
 const Catalog = () => {
     return (
-        <main className="main">
-            <GameList />
+        <main className="main container">
+            <PageHeader>
+                Catalog
+            </PageHeader>
+            <GameGrid />
         </main>
     )
 };

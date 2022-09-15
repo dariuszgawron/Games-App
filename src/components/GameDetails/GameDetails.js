@@ -23,6 +23,8 @@ const Details = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [gameDetails, setGameDetails] = useState([]);
+    const [developers, setDevelopers] = useState([]);
+    const [publishers, setPublishers] = useState([]);
 
     useEffect(() => {
         const getGameDetails = async () => {
@@ -41,6 +43,10 @@ const Details = () => {
             try {
                 const response = await igdbApi.getGames(queryParams);
                 setGameDetails(response[0]);
+                if('involved_companies' in response[0]) {
+                    setDevelopers(response[0].involved_companies.filter(company => company.developer === true));
+                    setPublishers(response[0].involved_companies.filter(company => company.publisher === true));
+                }
             } catch(error) {
                 setError(error);
             } finally {
@@ -203,17 +209,17 @@ const Details = () => {
                                         Developers:
                                     </h4>
                                     <div className="game-details-data__items">
-                                        {
-                                            ('involved_companies' in gameDetails)
-                                            ?   gameDetails.involved_companies
-                                                    .filter(company => company.developer === true)
-                                                    .map((developer, index) => (
-                                                        <span className="game-details-data__item game-details-data__item--mark" key={index}>
-                                                            {developer.company.name}
-                                                        </span>
-                                                    ))
-                                            :   'No data'
-                                        }
+                                    {
+                                        developers.length>0
+                                        ?   developers.map((developer, index) => (
+                                                <span className="game-details-data__item game-details-data__item--mark" key={index}>
+                                                    {developer.company.name}
+                                                </span>
+                                            ))
+                                        :   <span className="game-details-data__item">
+                                                ---
+                                            </span>
+                                    }
                                     </div>
                                 </div>
                                 <div className="game-details-data">
@@ -221,17 +227,17 @@ const Details = () => {
                                         Publishers:
                                     </h4>
                                     <div className="game-details-data__items">
-                                        {
-                                            ('involved_companies' in gameDetails)
-                                            ?   gameDetails.involved_companies
-                                                    .filter(company => company.publisher === true)
-                                                    .map((publisher, index) => (
-                                                        <span className="game-details-data__item game-details-data__item--mark" key={index}>
-                                                            {publisher.company.name}
-                                                        </span>
-                                                    ))
-                                            :   'No data'
-                                        }
+                                    {
+                                        publishers.length>0
+                                        ?   publishers.map((publisher, index) => (
+                                                <span className="game-details-data__item game-details-data__item--mark" key={index}>
+                                                    {publisher.company.name}
+                                                </span>
+                                            ))
+                                        :   <span className="game-details-data__item">
+                                                ---
+                                            </span>
+                                    }
                                     </div>
                                 </div>
                                 <div className="game-details-data">
@@ -276,12 +282,12 @@ const Details = () => {
                                 ?   gameDetails.websites.map((website, index) => (
                                         <span className="game-details-data__item" key={index}>
                                             <a href={website.url} >
-                                                {websitesCategory[website.category]}
+                                                {websitesCategory[website.category].title}
                                             </a>
                                         </span>
                                     ))
                                 :   <span className="game-details-data__item">
-                                        No data
+                                        No websites
                                     </span>
                             }
                             </div>

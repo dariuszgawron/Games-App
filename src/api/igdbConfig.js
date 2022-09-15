@@ -1,3 +1,13 @@
+const igdbConfig = {
+    // baseApiUrl: 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/',
+    baseApiUrl: 'https://api.igdb.com/v4/',
+    clientId: process.env.REACT_APP_IGDB_CLIENT_ID,
+    accessToken: process.env.REACT_APP_IGDB_ACCESS_TOKEN,
+    imageUrl: (imageSize, imagePath) => `https://images.igdb.com/igdb/image/upload/t_${imageSize}/${imagePath}.jpg`,
+    videoUrl: videoKey => `https://youtube.com/embed/${videoKey}`,
+    swiperItems: 15
+};
+
 export const imageSize = {
     micro: 'micro',
     thumb: 'thumb',
@@ -12,33 +22,74 @@ export const imageSize = {
 };
 
 export const websitesCategory = {
-    1: 'Official',
-    2: 'Wikia',
-    3: 'Wikipedia',
-    4: 'Facebook',
-    5: 'Twitter',
-    6: 'Twitch',
-    8: 'Instagram',
-    9: 'YouTube',
-    10: 'iPhone',
-    11: 'iPad',
-    12: 'Android',
-    13: 'Steam',
-    14: 'Reddit',
-    15: 'Itch',
-    16: 'Epic games',
-    17: 'GOG',
-    18: 'Discord'
-};
-
-const igdbConfig = {
-    // baseApiUrl: 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/',
-    baseApiUrl: 'https://api.igdb.com/v4/',
-    clientId: process.env.REACT_APP_IGDB_CLIENT_ID,
-    accessToken: process.env.REACT_APP_IGDB_ACCESS_TOKEN,
-    imageUrl: (imageSize, imagePath) => `https://images.igdb.com/igdb/image/upload/t_${imageSize}/${imagePath}.jpg`,
-    videoUrl: videoKey => `https://youtube.com/embed/${videoKey}`,
-    swiperItems: 15
+    1: {
+        title: 'Official',
+        icon: 'bx bx-link-external'
+    },
+    2: {
+        title: 'Wikia',
+        icon: ''
+    },
+    3: {
+        title: 'Wikipedia',
+        icon: 'bx bxl-wikipedia'
+    },
+    4: {
+        title: 'Facebook',
+        icon: 'bx bxl-facebook-circle'
+    },
+    5: {
+        title: 'Twitter',
+        icon: 'bx bxl-twitter'
+    },
+    6: {
+        title: 'Twitch',
+        icon: 'bx bxl-twitch'
+    },
+    8: {
+        title: 'Instagram',
+        icon: 'bx bxl-instagram'
+    },
+    9: {
+        title: 'YouTube',
+        icon: 'bx bxl-youtube'
+    },
+    10: {
+        title: 'iPhone',
+        icon: ''
+    },
+    11: {
+        title: 'iPad',
+        icon: ''
+    },
+    12: {
+        title: 'Android',
+        icon: 'bx bxl-android'
+    },
+    13: {
+        title: 'Steam',
+        icon: 'bx bxl-steam'
+    },
+    14: {
+        title: 'Reddit',
+        icon: 'bx bxl-reddit'
+    },
+    15: {
+        title: 'Itch',
+        icon: ''
+    },
+    16: {
+        title: 'Epic games',
+        icon: ''
+    },
+    17: {
+        title: 'GOG',
+        icon: ''
+    },
+    18: {
+        title: 'Discord',
+        icon: 'bx bxl-discord-alt'
+    }
 };
 
 export default igdbConfig;
