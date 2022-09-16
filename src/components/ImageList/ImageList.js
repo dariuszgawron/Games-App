@@ -22,11 +22,13 @@ const ImageList = props => {
     return (
         <div className="image-list">
             {
-                images && images.map((image, index) => (
-                    <div className="image-list__item" key={index}>
-                        <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.size720p, image.image_id)} alt={''} />
-                    </div>
-                ))
+                images.length>0 
+                ?   images.map((image, index) => (
+                        <div className="image-list__item" key={index}>
+                            <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.size720p, image.image_id)} alt={''} />
+                        </div>
+                    ))
+                :   'No images'
             }
         </div>
     )

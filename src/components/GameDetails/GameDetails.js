@@ -131,37 +131,17 @@ const Details = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="game-details__nav">
-                            <ul className="game-details__nav-pills">
-                                <li className="game-details__nav-pill">
-                                    Description
-                                </li>
-                                <li className="game-details__nav-pill">
-                                    Gallery
-                                </li>
-                                <li className="game-details__nav-pill">
-                                    Trailers
-                                </li>
-                                <li className="game-details__nav-pill">
-                                    Details
-                                </li>
-                                <li className="game-details__nav-pill">
-                                    Links
-                                </li>
-                            </ul>
-                        </div> */}
-                        <div className="game-details-section">
+    
+                        <div className="game-details-section game-details-section--description">
                             <h3 className="game-details-section__title">
                                 Description
                             </h3>
                             <div className="game-details-section__content">
-                                {gameDetails.storyline}
-
-                                {gameDetails.summary}
+                                {gameDetails.storyline || 'No description'}
                             </div>
                         </div>
                         
-                        <div className="game-details-section">
+                        <div className="game-details-section game-details-section--gallery">
                             <h3 className="game-details-section__title">
                                 Gallery
                             </h3>
@@ -170,7 +150,7 @@ const Details = () => {
                             </div>
                         </div>
 
-                        <div className="game-details-section">
+                        <div className="game-details-section game-details-section--trailers">
                             <h3 className="game-details-section__title">
                                 Trailers
                             </h3>
@@ -179,7 +159,7 @@ const Details = () => {
                             </div>
                         </div>
 
-                        <div className="game-details-section">
+                        <div className="game-details-section game-details-section--more">
                             <h3 className="game-details-section__title">
                                 More info
                             </h3>
@@ -271,7 +251,7 @@ const Details = () => {
                             </div>
                         </div>
 
-                        <div className="game-details-section">
+                        <div className="game-details-section game-details-section--websites">
                             <h3 className="game-details-section__title">
                                 Websites:
                             </h3>

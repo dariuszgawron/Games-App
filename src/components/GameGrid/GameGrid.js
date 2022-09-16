@@ -26,11 +26,11 @@ const GameGrid = props => {
         const offset = (currentPage-1) * 20;
         const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit 20;`;
         const response = await igdbApi.getGames(query);
-        setGames(...games,...response);
+        setGames([...games,...response]);
     }
 
     return (
-        <div className="game-grid section container">
+        <div className="game-grid section">
         {
             games && games.length>0
             ?   <div className="game-grid__container">
