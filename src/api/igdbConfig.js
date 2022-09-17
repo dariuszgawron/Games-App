@@ -5,7 +5,8 @@ const igdbConfig = {
     accessToken: process.env.REACT_APP_IGDB_ACCESS_TOKEN,
     imageUrl: (imageSize, imagePath) => `https://images.igdb.com/igdb/image/upload/t_${imageSize}/${imagePath}.jpg`,
     videoUrl: videoKey => `https://youtube.com/embed/${videoKey}`,
-    swiperItems: 15
+    swiperItems: 15,
+    gridItems: 20
 };
 
 export const imageSize = {
@@ -24,11 +25,11 @@ export const imageSize = {
 export const websitesCategory = {
     1: {
         title: 'Official',
-        icon: 'bx bx-link-external'
+        icon: 'bx bx-link'
     },
     2: {
         title: 'Wikia',
-        icon: ''
+        icon: 'bx bx-link'
     },
     3: {
         title: 'Wikipedia',
@@ -56,11 +57,11 @@ export const websitesCategory = {
     },
     10: {
         title: 'iPhone',
-        icon: ''
+        icon: 'bx bxl-apple'
     },
     11: {
         title: 'iPad',
-        icon: ''
+        icon: 'bx bxl-apple'
     },
     12: {
         title: 'Android',
@@ -76,15 +77,15 @@ export const websitesCategory = {
     },
     15: {
         title: 'Itch',
-        icon: ''
+        icon: 'bx bx-link'
     },
     16: {
         title: 'Epic games',
-        icon: ''
+        icon: 'bx bx-link'
     },
     17: {
         title: 'GOG',
-        icon: ''
+        icon: 'bx bx-link'
     },
     18: {
         title: 'Discord',

@@ -1,9 +1,10 @@
 .image-list {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 
     &__item {
+        width: 100%;
         overflow: hidden;
 
         &:hover .image-list__img {

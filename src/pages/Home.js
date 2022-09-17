@@ -30,7 +30,7 @@ const sectionsConfig = [
 
 const Home = () => {
     return (
-        <main className="main">
+        <main className="main container">
             {
                 sectionsConfig.map((section, index) => (
                     <Suspense key={index}>

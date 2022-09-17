@@ -24,7 +24,7 @@ const VideoList = props => {
                 videos.length>0 
                 ?   videos.map((video, index) => (
                         <iframe 
-                            className="tvideo-list__item"
+                            className="video-list__item"
                             src={igdbConfig.videoUrl(video.video_id)}
                             key={index}
                             title={video.name}

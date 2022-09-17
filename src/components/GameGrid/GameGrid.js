@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import igdbApi from "../../api/igdbApi";
+import igdbConfig from "../../api/igdbConfig";
 
 import GameCard from "../GameCard/GameCard";
 
@@ -13,7 +14,7 @@ const GameGrid = props => {
     useEffect(() => {
         const getGames = async () => {
             const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
-            const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit 20;`;
+            const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
             const response = await igdbApi.getGames(query);
             setGames(response);
         };
@@ -21,10 +22,11 @@ const GameGrid = props => {
     }, [props.keyword]);
 
     const loadMore = async () => {
-        setCurrentPage(currentPage+1);
+        const page = currentPage+1;
+        setCurrentPage(page);
         const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
-        const offset = (currentPage-1) * 20;
-        const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit 20;`;
+        const offset = (page-1) * igdbConfig.gridItems;
+        const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit ${igdbConfig.gridItems};`;
         const response = await igdbApi.getGames(query);
         setGames([...games,...response]);
     }

@@ -1,12 +1,15 @@
 .game-card {
-    margin: .2rem 0;
+    margin: .4rem .2rem;
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.105);
     transition: .3s;
+    border: 1px solid transparent;
 
     &:hover {
-        // transform: scale(1.02);
+        transform: scale(1.02);
+        border: 1px solid var(--secondary-color);
+        box-shadow: 0 .125rem .4rem rgba(0,0,0,.245);
     }
 
     &__link {

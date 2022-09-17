@@ -26,7 +26,7 @@ const GameList = props => {
     }, [props.query]);
 
     return (
-        <section className="game-list section container">
+        <section className="game-list section">
             <div className="section__header">
                 <h2 className="section__title">
                     {props.title}
@@ -44,7 +44,7 @@ const GameList = props => {
                 {
                     games && games.length>0 ? (
                         <Swiper
-                            spaceBetween={15}
+                            spaceBetween={10}
                             slidesPerView={1}
                             modules={[Navigation]}
                             navigation={{
