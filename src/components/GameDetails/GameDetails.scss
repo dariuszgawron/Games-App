@@ -182,12 +182,13 @@
 }
 
 .chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
 
     &-circle {
-
-        &--primary {
-            stroke: rgb(246, 44, 132);
-        }
+        width: 5rem;
 
         &__background {
             fill: none;
@@ -197,18 +198,47 @@
 
         &__foreground {
             fill: none;
-            stroke-width: 2.8;
+            stroke-width: 2.1;
             stroke-linecap: round;
 
-            &--animate {
+            &--primary{
+                stroke: rgb(246, 44, 132);
+            }
 
+            &--animate {
+                animation: circleProgress 2s ease-out forwards;
             }
         }
 
         &__title {
             fill: rgb(135, 135, 135);
-            font-size: var(--font-size-5);
+            font-size: .7rem;
             text-anchor: middle;
+
+            // &-top, &-bottom {
+            //     fill: rgb(135, 135, 135);
+            //     text-anchor: middle;
+            // }
+
+            // &-top {
+            //     font-size: .7rem;
+            // }
+
+            // &-bottom {
+            //     font-size: .5rem;
+            // }
         }
+    }
+
+    &__description {
+        font-size: var(--font-size-5);
+        font-weight: var(--font-weight-medium);
+    }
+}
+
+// ANIMATIONS
+@keyframes circleProgress {
+    0% {
+        stroke-dasharray: 0 100;
     }
 }

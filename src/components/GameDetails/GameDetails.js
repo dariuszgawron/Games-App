@@ -9,6 +9,7 @@ import "./GameDetails.scss";
 import ImageList from "../ImageList/ImageList";
 import VideoList from "../VideoList/VideoList";
 import GameList from "../GameList/GameList";
+import ImageModal from "../ImageModal/ImageModal";
 
 const getDate = (unixTimestamp) => {
     const months = [
@@ -123,12 +124,12 @@ const Details = () => {
                                     Ratings:
                                 </h4>
                                 <div className="game-details-data__items">
-                                    <div className="game-details-data__item">
+                                    {/* <div className="game-details-data__item">
                                         {gameDetails.rating ? Math.round(gameDetails.rating) : '--'} / {gameDetails.rating_count || '--'}
                                     </div>
                                     <div className="game-details-data__item">
                                         {gameDetails.aggregated_rating ? Math.round(gameDetails.aggregated_rating) : '--'} / {gameDetails.aggregated_rating_count || '--'}
-                                    </div>
+                                    </div> */}
 
                                     <div className="game-details-data__item">
                                         <div className="chart">
@@ -140,17 +141,42 @@ const Details = () => {
                                                         a 15.9155 15.9155 0 0 1 0 -31.831"
                                                 />
                                                 <path 
-                                                    className="chart-circle__foreground chart-circle__foreground--animate"
-                                                    stroke-dasharray="30, 100"
+                                                    className="chart-circle__foreground chart-circle__foreground--primary chart-circle__foreground--animate"
+                                                    strokeDasharray={`${gameDetails.rating ? Math.round(gameDetails.rating) : -1}, 100`}
                                                     d="M18 2.0845
                                                         a 15.9155 15.9155 0 0 1 0 31.831
                                                         a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                                <text className="chart-circle__title" x="18" y="20.35">
-                                                    <span className="chart-circle__title-main">
-                                                        30%
-                                                    </span>
+                                                <text className="chart-circle__title" x="18" y="20.75">
+                                                    {gameDetails.rating ? Math.round(gameDetails.rating) : 'N/A'}
                                                 </text>
                                             </svg>
+                                            <h4 className="chart__description">
+                                                members
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div className="game-details-data__item">
+                                        <div className="chart">
+                                            <svg className="chart-circle" viewBox="0 0 36 36">
+                                                <path 
+                                                    className="chart-circle__background"
+                                                    d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                                />
+                                                <path 
+                                                    className="chart-circle__foreground chart-circle__foreground--primary chart-circle__foreground--animate"
+                                                    strokeDasharray={`${gameDetails.aggregated_rating ? Math.round(gameDetails.aggregated_rating) : 0}, 100`}
+                                                    d="M18 2.0845
+                                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                                <text className="chart-circle__title" x="50%" y="20.75">
+                                                    {gameDetails.aggregated_rating ? Math.round(gameDetails.aggregated_rating) : 'N/A'}
+                                                </text>
+                                            </svg>
+                                            <h4 className="chart__description">
+                                                critics
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +311,7 @@ const Details = () => {
                                             ('websites' in gameDetails)
                                             ?   gameDetails.websites.map((website, index) => (
                                                     <a href={website.url} className="game-details-data__item game-details-data__item--mark" target={`_blank`} key={index}>
-                                                        <i class={`game-details-data__icon ${websitesCategory[website.category].icon}`}></i>
+                                                        <i className={`game-details-data__icon ${websitesCategory[website.category].icon}`}></i>
                                                         {websitesCategory[website.category].title}
                                                     </a>    
                                                 ))
@@ -331,6 +357,7 @@ const Details = () => {
                     </div>
                 )
             }
+            <ImageModal />
         </div>
     )
 };
