@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import SearchModal from "../SearchModal/SearchModal";
+
 import "./Header.scss";
 
 const navLinks = [
@@ -14,39 +16,49 @@ const navLinks = [
         path: '/games',
         icon: 'bx bx-game'
     },
-    {
-        title: 'Info',
-        path: '/info',
-        icon: 'bx bx-info-circle'
-    }
+    // {
+    //     title: 'Info',
+    //     path: '/info',
+    //     icon: 'bx bx-info-circle'
+    // }
 ];
 
 const Header = () => {
     const { pathname } = useLocation();
 
+    const openSearchModal = event => {
+        const searchModal = document.getElementById('search-modal');
+        searchModal.classList.toggle('modal--active'); 
+    };
+
     return (
-        <header className="header">
+        <header className="header header--fixed">
             <nav className="nav container">
                 <div className="nav-logo">
-
+                    Logo
                 </div>
-                <div className="nav-options">
-
-                </div>
-                <div className="nav-menu">
-                    <ul className="nav-list">
+                <div className="nav__buttons">
+                    <div className="nav__menu">
+                        <ul className="nav-list">
                         {
                             navLinks.map((link, index) => (
                                 <li className="nav-list__item" key={index}>
                                     <Link className="nav-link" to={link.path} >
                                         <i className={`nav-link__icon ${link.icon}`}></i>
+                                        <span className="nav-link__text">{link.title}</span>
                                     </Link>
                                 </li>
                             ))
                         }
-                    </ul>
+                        </ul>
+                    </div>
+                    <div className="nav-search" onClick={openSearchModal}>
+                        <i className='nav-search__icon bx bx-search'></i>
+                    </div>
                 </div>
             </nav>
+            
+            <SearchModal />
         </header>
     )
 };

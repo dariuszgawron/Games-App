@@ -6,6 +6,12 @@
     &__item {
         width: 100%;
         overflow: hidden;
+        cursor: zoom-in;
+        transition: .3s;
+
+        &:hover {
+            box-shadow: 0 .125rem .7rem rgba(0, 0, 0, 0.611);
+        }
 
         &:hover .image-list__img {
             transform: scale(1.1);

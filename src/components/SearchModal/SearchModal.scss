@@ -1,0 +1,19 @@
+.search-modal {
+
+    &__box {
+        width: 50vw;
+        height: 2rem;
+    }
+
+    &__input {
+        width: 95%;
+        height: 100%;
+        padding: .3rem;
+    }
+
+    &__button {
+        width: 5%;
+        height: 100%;
+    }
+
+}

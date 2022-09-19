@@ -12,7 +12,6 @@ const ImageList = props => {
     
     const openModal = event => {
         const imageModal = document.getElementById('image-modal');
-        console.log(imageModal);
         const imageSrc = igdbConfig.imageUrl(imageSize.screenshotHuge, event.target.getAttribute('data-filepath'));
         imageModal.querySelector('.image-modal__img').setAttribute('src', imageSrc);
         imageModal.classList.toggle('modal--active'); 
