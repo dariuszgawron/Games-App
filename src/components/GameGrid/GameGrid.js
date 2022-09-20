@@ -13,8 +13,11 @@ const GameGrid = props => {
 
     useEffect(() => {
         const getGames = async () => {
-            const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
-            const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
+            // const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
+            // const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
+            const query = (props.keyword)
+                ? `search "${props.keyword}"; fields *, cover.*, platforms.*, platforms.platform_logo.*; limit ${igdbConfig.gridItems};`
+                : `fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
             const response = await igdbApi.getGames(query);
             setGames(response);
         };

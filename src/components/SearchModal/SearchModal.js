@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "../Modal/Modal";
@@ -12,9 +12,9 @@ const SearchModal = () => {
 
     const searchGame = useCallback(
         () => {
-            console.log(keyword);
-            if(keyword.trim.length>0) {
+            if(keyword.trim().length>0) {
                 navigate(`/games/search/${keyword}`);
+                document.getElementById('search-modal').classList.toggle('modal--active'); 
             };
             setKeyword('');
         },
@@ -31,7 +31,7 @@ const SearchModal = () => {
         document.addEventListener('keyup', handleEnter);
         return () => {
             document.removeEventListener('keyup', handleEnter);
-        }
+        };
     }, [searchGame]);
 
     return (
@@ -42,8 +42,10 @@ const SearchModal = () => {
                         className="search-modal__input" 
                         ref={inputRef}
                         type="search"
+                        value={keyword}
                         placeholder="Search games"
                         onChange={event => setKeyword(event.target.value)} 
+                        autoFocus
                     />
                     <button className="search-modal__button" onClick={searchGame} >
                         <i className="search-modal__button-icon bx bx-search"></i>

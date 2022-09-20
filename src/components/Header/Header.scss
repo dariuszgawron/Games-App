@@ -25,7 +25,7 @@
     &__buttons {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     &__menu {
@@ -46,21 +46,29 @@
     &-link {
         display: flex;
         align-items: center;
-        gap: .3rem;
+        gap: .2rem;
+        
+        &__icon {
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-color);
+        }
     }
 
     &-search {
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 2.3rem;
+        height: 2.3rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid rgb(219, 219, 219);
+        // border: 1px solid rgb(219, 219, 219);
+        border: 1px solid var(--primary-color);
+        background-color: var(--primary-color);
+        color: var(--text-color-light);
         border-radius: 50%;
         cursor: pointer;
 
         &:hover {
-            box-shadow: 0 .025rem .25rem rgb(211, 211, 211);
+            box-shadow: 0 .025rem .5rem rgb(211, 211, 211);
         }
     }
 

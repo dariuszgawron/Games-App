@@ -19,9 +19,9 @@ const ImageModal = props => {
     )
 };
 
-ImageModal.propTypes = {
-    filepath: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-};
+// ImageModal.propTypes = {
+//     filepath: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired
+// };
 
 export default ImageModal;

@@ -1,19 +1,43 @@
 .search-modal {
 
     &__box {
-        width: 50vw;
-        height: 2rem;
+        width: 700px;
+        height: 3rem;
+        display: flex;
+        border-radius: 1.2rem;
+        overflow: hidden;
     }
 
     &__input {
-        width: 95%;
+        width: 640px;
         height: 100%;
-        padding: .3rem;
+        padding: .3rem .7rem;
+        font-size: var(--font-size-5);
+        text-transform: uppercase;
+        
     }
 
     &__button {
-        width: 5%;
+        width: 60px;
+        margin: 0;
+        padding: 0;
         height: 100%;
+        font-size: var(--font-size-4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s;
+        background-color: var(--primary-color);
+        color: var(--text-color-light);
+
+        &:hover .search-modal__button-icon {
+            transform: scale(1.1);
+        }
+
+        &-icon {
+            font-weight: var(--font-weight-bold);
+            transition: .3s;
+        }
     }
 
 }

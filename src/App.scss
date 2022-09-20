@@ -19,7 +19,7 @@
     // COLORS
     --primary-color: rgb(246, 44, 132);
     --secondary-color: rgb(168, 92, 249);
-    --background-primary-color: rgb(252, 252, 252);
+    --background-primary-color: rgb(250, 250, 250);
     --background-secondary-color: rgb(255, 255, 255);
     --border-primary-color: ;
     --text-color-light: rgb(255, 255, 255);
@@ -90,7 +90,7 @@ img {
     margin-top: 2rem;
     
     &__header {
-        margin-bottom: 1.5rem;
+        margin-bottom: .7rem;
         display: flex;
         justify-content: space-between;
         align-items: center;

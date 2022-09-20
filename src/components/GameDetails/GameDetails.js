@@ -142,7 +142,7 @@ const Details = () => {
                                                 />
                                                 <path 
                                                     className="chart-circle__foreground chart-circle__foreground--primary chart-circle__foreground--animate"
-                                                    strokeDasharray={`${gameDetails.rating ? Math.round(gameDetails.rating) : -1}, 100`}
+                                                    strokeDasharray={`${gameDetails.rating ? Math.round(gameDetails.rating) : 0}, 100`}
                                                     d="M18 2.0845
                                                         a 15.9155 15.9155 0 0 1 0 31.831
                                                         a 15.9155 15.9155 0 0 1 0 -31.831"/>

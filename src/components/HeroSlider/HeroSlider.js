@@ -15,7 +15,7 @@ const HeroSlider = () => {
 
     useEffect(() => {
         const getGames = async () => {
-            const queryParams = 'fields *; limit 3;';
+            const queryParams = 'fields *; sort rating desc; limit 3;';
             const response = igdbApi.getGames(queryParams);
             setSlides(response);
         };

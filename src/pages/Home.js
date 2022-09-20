@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 
 import igdbConfig from "../api/igdbConfig";
 
+const HeroSlider = React.lazy(() => import("../components/HeroSlider/HeroSlider"));
 const GameList = React.lazy(() => import("../components/GameList/GameList"));
 
 const today = new Date();
@@ -31,13 +32,14 @@ const sectionsConfig = [
 const Home = () => {
     return (
         <main className="main container">
-            {
-                sectionsConfig.map((section, index) => (
-                    <Suspense key={index}>
-                        <GameList title={section.title} link={section.link} query={section.query} />
-                    </Suspense>
-                ))
-            }
+            {/* <HeroSlider /> */}
+        {
+            sectionsConfig.map((section, index) => (
+                <Suspense key={index}>
+                    <GameList title={section.title} link={section.link} query={section.query} />
+                </Suspense>
+            ))
+        }
         </main>
     )
 };

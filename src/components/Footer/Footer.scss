@@ -1,0 +1,23 @@
+.footer {
+    padding: 3rem 0;
+
+    @media screen and (min-width: 992px) {
+        padding-bottom: 1rem;
+    }
+
+    &__content {
+        font-size: var(--font-size-6);
+        color: var(--text-color-dark);
+
+        &--center {
+            text-align: center;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+        margin-bottom: .5rem;
+    }
+}

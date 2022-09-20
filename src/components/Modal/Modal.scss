@@ -10,7 +10,7 @@
     align-self: center;
     opacity: 0;
     visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.671);
+    background-color: rgba(0, 0, 0, 0.784);
     transition: .3s ease-out;
 
     &--active {
@@ -21,6 +21,8 @@
     &__content {
         position: relative;
         padding: 3rem;
+        display: flex;
+        align-items: center;
     }
 
     &-close {

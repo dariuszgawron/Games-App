@@ -12,7 +12,7 @@ const ImageList = props => {
     
     const openModal = event => {
         const imageModal = document.getElementById('image-modal');
-        const imageSrc = igdbConfig.imageUrl(imageSize.screenshotHuge, event.target.getAttribute('data-filepath'));
+        const imageSrc = igdbConfig.imageUrl(imageSize.size1080p, event.target.getAttribute('data-filepath'));
         imageModal.querySelector('.image-modal__img').setAttribute('src', imageSrc);
         imageModal.classList.toggle('modal--active'); 
     } 
@@ -28,15 +28,15 @@ const ImageList = props => {
 
     return (
         <div className="image-list">
-            {
-                images.length>0 
-                ?   images.map((image, index) => (
-                        <div className="image-list__item" key={index}>
-                            <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.size720p, image.image_id)} alt={''} data-filepath={image.image_id} onClick={openModal}/>
-                        </div>
-                    ))
-                :   'No images'
-            }
+        {
+            images.length>0 
+            ?   images.map((image, index) => (
+                    <div className="image-list__item" key={index}>
+                        <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.screenshotBig, image.image_id)} alt={''} data-filepath={image.image_id} onClick={openModal}/>
+                    </div>
+                ))
+            :   'No images'
+        }
         </div>
     )
 };
