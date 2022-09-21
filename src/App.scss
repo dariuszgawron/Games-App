@@ -134,3 +134,18 @@ img {
 
     }
 }
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: .7rem;
+    background-color: rgb(235, 235, 235);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: rgb(248, 115, 172);
+
+    &:hover {
+        background-color: var(--primary-color);
+    }
+}

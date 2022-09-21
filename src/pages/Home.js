@@ -32,7 +32,9 @@ const sectionsConfig = [
 const Home = () => {
     return (
         <main className="main container">
-            {/* <HeroSlider /> */}
+            <Suspense>
+                <HeroSlider />
+            </Suspense>
         {
             sectionsConfig.map((section, index) => (
                 <Suspense key={index}>

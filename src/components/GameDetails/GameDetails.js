@@ -124,13 +124,6 @@ const Details = () => {
                                     Ratings:
                                 </h4>
                                 <div className="game-details-data__items">
-                                    {/* <div className="game-details-data__item">
-                                        {gameDetails.rating ? Math.round(gameDetails.rating) : '--'} / {gameDetails.rating_count || '--'}
-                                    </div>
-                                    <div className="game-details-data__item">
-                                        {gameDetails.aggregated_rating ? Math.round(gameDetails.aggregated_rating) : '--'} / {gameDetails.aggregated_rating_count || '--'}
-                                    </div> */}
-
                                     <div className="game-details-data__item">
                                         <div className="chart">
                                             <svg className="chart-circle" viewBox="0 0 36 36">

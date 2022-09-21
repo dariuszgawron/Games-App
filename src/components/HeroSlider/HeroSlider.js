@@ -15,8 +15,14 @@ const HeroSlider = () => {
 
     useEffect(() => {
         const getGames = async () => {
-            const queryParams = 'fields *; sort rating desc; limit 3;';
-            const response = igdbApi.getGames(queryParams);
+            const queryParams = `
+                fields *,
+                cover.*,
+                screenshots.*,
+                genres.*; 
+                where id = (1877,1942,133004);
+                limit 3;`;
+            const response = await igdbApi.getGames(queryParams);
             setSlides(response);
         };
         getGames();
@@ -32,11 +38,11 @@ const HeroSlider = () => {
                     delay: 4000,
                     disableOnInteraction: false
                 }}
-                speed={3000}
+                speed={6000}
                 loop={true}
             >
                 {
-                    slides.map((game, index) => (
+                    slides && slides.map((game, index) => (
                         <SwiperSlide key={index}>
                             <HeroSlide game={game} key={index} />
                         </SwiperSlide>
