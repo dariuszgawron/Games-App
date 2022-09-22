@@ -36,57 +36,57 @@ const HeroSlide = props => {
                     </div>
                     <div className="hero-slide__rating">
                         <div className="hero-slide__rating-chart">
-                            <div className="chart">
-                                <svg className="chart-circle" viewBox="0 0 36 36">
+                            <div className="hero-chart">
+                                <svg className="hero-chart-circle" viewBox="0 0 36 36">
                                     <path 
-                                        className="chart-circle__background"
+                                        className="hero-chart-circle__background"
                                         d="M18 2.0845
                                             a 15.9155 15.9155 0 0 1 0 31.831
                                             a 15.9155 15.9155 0 0 1 0 -31.831"
                                     />
                                     <path 
-                                        className="chart-circle__foreground chart-circle__foreground--primary chart-circle__foreground--animate"
+                                        className="hero-chart-circle__foreground hero-chart-circle__foreground--primary hero-chart-circle__foreground--animate"
                                         strokeDasharray={`${props.game.rating ? Math.round(props.game.rating) : 0}, 100`}
                                         d="M18 2.0845
                                             a 15.9155 15.9155 0 0 1 0 31.831
                                             a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                    <text className="chart-circle__title" x="18" y="20.75">
+                                    <text className="hero-chart-circle__title" x="18" y="21.55">
                                         {props.game.rating ? Math.round(props.game.rating) : 'N/A'}
                                     </text>
                                 </svg>
-                                <h4 className="chart__description">
+                                <h4 className="hero-chart__description">
                                     members
                                 </h4>
                             </div>
                         </div>
                         <div className="hero-slide__rating-chart">
-                            <div className="chart">
-                                <svg className="chart-circle" viewBox="0 0 36 36">
+                            <div className="hero-chart">
+                                <svg className="hero-chart-circle hero-chart-circle--small" viewBox="0 0 36 36">
                                     <path 
-                                        className="chart-circle__background"
+                                        className="hero-chart-circle__background"
                                         d="M18 2.0845
                                             a 15.9155 15.9155 0 0 1 0 31.831
                                             a 15.9155 15.9155 0 0 1 0 -31.831"
                                     />
                                     <path 
-                                        className="chart-circle__foreground chart-circle__foreground--primary chart-circle__foreground--animate"
+                                        className="hero-chart-circle__foreground hero-chart-circle__foreground--primary hero-chart-circle__foreground--animate"
                                         strokeDasharray={`${props.game.aggregated_rating ? Math.round(props.game.aggregated_rating) : 0}, 100`}
                                         d="M18 2.0845
                                             a 15.9155 15.9155 0 0 1 0 31.831
                                             a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                    <text className="chart-circle__title" x="50%" y="20.75">
+                                    <text className="hero-chart-circle__title" x="50%" y="22.25">
                                         {props.game.aggregated_rating ? Math.round(props.game.aggregated_rating) : 'N/A'}
                                     </text>
                                 </svg>
-                                <h4 className="chart__description">
+                                <h4 className="hero-chart__description">
                                     critics
                                 </h4>
                             </div>
                         </div>
                     </div>
                     <div className="hero-slide__buttons">
-                        <Button onClick={() => navigate(`/games/${props.game.id}`)}>
-                            <i className='button__icon bx bx-show'></i>
+                        <Button onClick={() => navigate(`/games/${props.game.id}`)} className="button--primary">
+                            <i className='button__icon button__icon--animate bx bxs-chevron-right'></i>
                             See more
                         </Button>
                     </div>

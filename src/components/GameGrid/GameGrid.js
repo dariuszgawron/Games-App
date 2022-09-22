@@ -4,6 +4,7 @@ import igdbApi from "../../api/igdbApi";
 import igdbConfig from "../../api/igdbConfig";
 
 import GameCard from "../GameCard/GameCard";
+import Button from "../Button/Button";
 
 import "./GameGrid.scss";
 
@@ -52,7 +53,9 @@ const GameGrid = props => {
                     </p>
                 </div>
         }
-            <button onClick={loadMore}>Load more</button>
+            <Button onClick={loadMore} class='button--primary button--center'>
+                Load more
+            </Button>
         </div>
     )
 };

@@ -1,0 +1,47 @@
+.button {
+    padding: .4rem .6rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    border-radius: .6rem;
+    transition: .3s;
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-bold);
+
+    &:hover {
+        scale: 1.05;
+        box-shadow: 0 0 10px 4px rgb(183, 182, 182);
+        color: var(--primary-color);
+    }
+
+    &--primary {
+        background-color: var(--primary-color);
+        color: var(--text-color-light);
+
+        &:hover {
+            color: var(--text-color-light);
+        }
+    }
+
+    &__icon {
+        padding: 0;
+        font-size: var(--font-size-3);
+
+        &--animate {
+            animation: iconActive 2s ease-in infinite;
+        }
+    }
+}
+
+// ANIMATIONS
+@keyframes iconActive {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(4px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

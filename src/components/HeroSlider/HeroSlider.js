@@ -38,7 +38,7 @@ const HeroSlider = () => {
                     delay: 4000,
                     disableOnInteraction: false
                 }}
-                speed={6000}
+                speed={2000}
                 loop={true}
             >
                 {

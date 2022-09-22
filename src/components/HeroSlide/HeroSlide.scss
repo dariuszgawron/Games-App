@@ -1,6 +1,6 @@
 .hero-slide {
     position: relative;
-    height: 80vh;
+    height: 85vh;
 
     &__background {
         width: 100%;
@@ -29,15 +29,15 @@
         gap: 4rem;
         padding: 2rem 3rem;
 
-        @media screen and (min-width: 992px) {
-            grid-template-columns: 25% 75%;
+        @media screen and (min-width: 876px) {
+            grid-template-columns: 3fr 7fr;
         }
     }
 
     &__poster {
         display: none;
 
-        @media screen and (min-width: 992px) {
+        @media screen and (min-width: 876px) {
             display: block;
             width: 100%;
             height: auto;
@@ -64,7 +64,9 @@
     &__genres {
         margin-bottom: 1.5rem;
         display: flex;
+        flex-wrap: wrap;
         gap: .5rem;
+        font-size: var(--font-size-5);
 
         &-item {
 
@@ -76,20 +78,65 @@
                 border-radius: 1rem;
             }
         }
-
-        // &__item {
-        //     display: flex;
-        //     align-items: center;
-        //     gap: .3rem;
-
-        // }
     }
 
     &__rating {
         margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
         color: var(--text-color-light);
-        gap: 2rem
+    }
+}
+
+.hero-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+
+    @media screen and (min-width: 876px) {
+        flex-direction: row;
+    }
+
+    &-circle {
+        width: 5rem;
+
+        &--small {
+            width: 4rem;
+        }
+
+        &__background {
+            fill: none;
+            stroke: rgba(233, 233, 233, 0.377);   
+            stroke-width: 3.8;
+        }
+
+        &__foreground {
+            fill: none;
+            stroke-width: 2.4;
+            stroke-linecap: round;
+
+            &--primary {
+                stroke: rgb(246, 44, 132);
+            }
+
+            &--animate {
+                animation: circleProgress 2s ease-out forwards;
+            }
+        }
+
+        &__title {
+            fill: var(--text-color-light);
+            font-size: .8rem;
+            text-anchor: middle;
+            font-weight: var(--font-weight-bold);
+        }
+    }
+
+    &__description {
+        font-size: var(--font-size-5);
+        font-weight: var(--font-weight-bold);
     }
 }
