@@ -43,7 +43,6 @@
         flex-direction: column;
         justify-content: center;
         row-gap: .5rem;
-        // text-align: center;
     }
 
     &__info {
@@ -54,6 +53,14 @@
     }
 
     &__platforms {
+        width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &-item {
+            
+        }
 
     }
 
@@ -72,10 +79,8 @@
         font-size: var(--font-size-5);
         color: var(--text-color-dark);
         font-weight: var(--font-weight-bold);
-        height: calc(var(--font-size-5) * 3.2);
+        height: calc(var(--font-size-5) * 3.3);
         overflow: hidden;
-        // text-overflow: ellipsis;
-        // overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;

@@ -28,6 +28,22 @@
         grid-area: cover;
     }
 
+    &__backdrop {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1.5rem;
+        background: #bdc3c7;
+        background: linear-gradient(300deg, rgb(173, 169, 150), rgb(242, 242, 242), rgb(219, 219, 219), rgb(234, 234, 234));
+
+        &-icon {
+            font-size: calc(var(--font-size-1) * 2.8);
+            color:rgb(247, 169, 11);
+        }
+    }
+
     &__info {
         padding: 1rem;
         border-radius: 1.5rem;

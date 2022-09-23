@@ -15,12 +15,7 @@ const navLinks = [
         title: 'Games',
         path: '/games',
         icon: 'bx bx-game'
-    },
-    // {
-    //     title: 'Info',
-    //     path: '/info',
-    //     icon: 'bx bx-info-circle'
-    // }
+    }
 ];
 
 const Header = () => {

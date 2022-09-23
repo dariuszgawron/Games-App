@@ -15,7 +15,7 @@ const getDate = (unixTimestamp) => {
     const months = [
         "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
     ];
-    const date = new Date(unixTimestamp*1000);
+    const date = new Date(unixTimestamp * 1000);
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 }
 
@@ -67,7 +67,15 @@ const Details = () => {
             {
                 !loading && gameDetails && (
                     <div className="game-details__container">
-                        <img className="game-details__cover" src={igdbConfig.imageUrl(imageSize.coverBig, gameDetails.cover.image_id)} alt={`${gameDetails.name} - cover`} />
+                        {
+                            ('cover' in gameDetails && 'image_id' in gameDetails.cover) ? (
+                                <img className="game-details__cover" src={igdbConfig.imageUrl(imageSize.coverBig, gameDetails.cover.image_id)} alt={`${gameDetails.name} - cover`} />
+                            ) : (
+                                <div className="game-details__backdrop">
+                                    <i className="game-details__backdrop-icon bx bx-game"></i>
+                                </div>
+                            )
+                        }
                         <div className="game-details__info">
                             <h2 className="game-details__title game-details__title--center">{gameDetails.name}
                             </h2>
@@ -190,7 +198,7 @@ const Details = () => {
                                 Gallery
                             </h3>
                             <div className="game-details__images">
-                                <ImageList gameId={id} />
+                                <ImageList gameId={id} gameTitle={gameDetails.name} />
                             </div>
                         </div>
 

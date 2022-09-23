@@ -29,10 +29,10 @@ const ImageList = props => {
     return (
         <div className="image-list">
         {
-            images.length>0 
+            images.length > 0 
             ?   images.map((image, index) => (
                     <div className="image-list__item" key={index}>
-                        <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.screenshotBig, image.image_id)} alt={''} data-filepath={image.image_id} onClick={openModal}/>
+                        <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.screenshotBig, image.image_id)} alt={`${props.gameTitle} - gallery`} data-filepath={image.image_id} onClick={openModal}/>
                     </div>
                 ))
             :   'No images'
@@ -42,7 +42,8 @@ const ImageList = props => {
 };
 
 ImageList.propTypes = {
-    gameId: PropTypes.string.isRequired
+    gameId: PropTypes.string.isRequired,
+    gameTitle: PropTypes.string
 };
 
 export default ImageList;

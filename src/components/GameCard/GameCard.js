@@ -22,11 +22,12 @@ const GameCard = props => {
                 <div className="game-card__data">
                     <div className="game-card__info">
                         <div className="game-card__platforms">
-                            PS | XO
-                            {
-                                'platforms' in props.game && 'platform_logo' in props.game.platforms 
-                                ? props.game.platforms.platform_logo.image_id 
-                                : ''
+                            {   
+                                'platforms' in props.game 
+                                ?   props.game.platforms.map((platform, index) => (
+                                        <span className="game-card__platforms-item" key={index}>{platform.abbreviation} </span>
+                                    ))
+                                : '---'
                             }
                         </div>
                         <div className="game-card__rating">
