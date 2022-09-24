@@ -20,7 +20,6 @@ const ImageModal = props => {
 };
 
 // ImageModal.propTypes = {
-//     filepath: PropTypes.string.isRequired,
 //     title: PropTypes.string.isRequired
 // };
 

@@ -30,7 +30,7 @@ const Header = () => {
         <header className="header header--fixed">
             <nav className="nav container">
                 <div className="nav-logo">
-                    Logo
+                    GameBase
                 </div>
                 <div className="nav__buttons">
                     <div className="nav__menu">

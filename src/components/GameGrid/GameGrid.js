@@ -11,6 +11,7 @@ import "./GameGrid.scss";
 const GameGrid = props => { 
     const [games, setGames] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         const getGames = async () => {
@@ -19,8 +20,10 @@ const GameGrid = props => {
             const query = (props.keyword)
                 ? `search "${props.keyword}"; fields *, cover.*, platforms.*, platforms.platform_logo.*; limit ${igdbConfig.gridItems};`
                 : `fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
-            const response = await igdbApi.getGames(query);
-            setGames(response);
+            const gamesResponse = await igdbApi.getGames(query);
+            const pagesResponse = await igdbApi.getGames(query,'T');
+            setGames(gamesResponse);
+            setTotalPages(Math.ceil(pagesResponse.count/igdbConfig.gridItems));
         };
         getGames();
     }, [props.keyword]);
@@ -28,9 +31,12 @@ const GameGrid = props => {
     const loadMore = async () => {
         const page = currentPage+1;
         setCurrentPage(page);
-        const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
+        // const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
         const offset = (page-1) * igdbConfig.gridItems;
-        const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit ${igdbConfig.gridItems};`;
+        // const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit ${igdbConfig.gridItems};`;
+        const query = (props.keyword)
+            ? `search "${props.keyword}"; fields *, cover.*, platforms.*, platforms.platform_logo.*; offset ${offset}; limit ${igdbConfig.gridItems};`
+            : `fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit ${igdbConfig.gridItems};`;
         const response = await igdbApi.getGames(query);
         setGames([...games,...response]);
     }
@@ -39,13 +45,22 @@ const GameGrid = props => {
         <div className="game-grid section">
         {
             games && games.length>0
-            ?   <div className="game-grid__container">
-                {        
-                    games.map((game, index) => {
-                        return <GameCard game={game} key={index}/>
-                    })
-                }
-                </div>
+            ?   <>
+                    <div className="game-grid__container">
+                    {        
+                        games.map((game, index) => {
+                            return <GameCard game={game} key={index}/>
+                        })
+                    }
+                    </div>
+                    {
+                        totalPages!==0 && currentPage<totalPages && (
+                            <Button onClick={loadMore} class='button--primary button--center'>
+                                Load more
+                            </Button>
+                        )
+                    }
+                </>
             :   <div className="game-grid__empty">
                     <i className="game-grid__empty-icon"></i>
                     <p className="game-grid__empty-text">
@@ -53,9 +68,6 @@ const GameGrid = props => {
                     </p>
                 </div>
         }
-            <Button onClick={loadMore} class='button--primary button--center'>
-                Load more
-            </Button>
         </div>
     )
 };

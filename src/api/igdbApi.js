@@ -1,8 +1,8 @@
 import axiosConfig from "./axiosConfig";
 
 const igdbApi = {
-    getGames: (queryParams) => {
-        const url = 'games';
+    getGames: (queryParams,countRecords='N') => {
+        const url = `games${countRecords==='T' ? '/count' : ''}`;
         return axiosConfig.post(url, queryParams);
     },
     getGenres: (queryParams) => {
