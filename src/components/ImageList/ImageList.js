@@ -30,12 +30,19 @@ const ImageList = props => {
         <div className="image-list">
         {
             images.length > 0 
-            ?   images.map((image, index) => (
-                    <div className="image-list__item" key={index}>
-                        <img className="image-list__img" src={igdbConfig.imageUrl(imageSize.screenshotBig, image.image_id)} alt={`${props.gameTitle} - gallery`} data-filepath={image.image_id} onClick={openModal}/>
-                    </div>
-                ))
-            :   'No images'
+            ?   <div className="image-list__grid">
+                {
+                    images.map((image, index) => (
+                        <div className="image-list__grid-item" key={index}>
+                            <img className="image-list__grid-img" src={igdbConfig.imageUrl(imageSize.screenshotBig, image.image_id)} alt={`${props.gameTitle} - gallery`} data-filepath={image.image_id} onClick={openModal}/>
+                        </div>
+                    ))
+                }
+                </div>
+            :   <span className="image-list__empty">
+                    <i class='image-list__empty-icon bx bxs-invader'></i>
+                    No images
+                </span>
         }
         </div>
     )

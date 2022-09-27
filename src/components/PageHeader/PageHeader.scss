@@ -1,0 +1,17 @@
+.page-header {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+
+    &__title {
+        font-size: var(--font-size-2);
+        color: var(--text-color-dark);
+
+        &::first-letter {
+            color: var(--primary-color);
+        }
+
+        &--center {
+            text-align: center;
+        }
+    }
+}

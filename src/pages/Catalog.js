@@ -10,7 +10,7 @@ const Catalog = () => {
     return (
         <main className="main container">
             <PageHeader>
-                Catalog
+                Games
             </PageHeader>
             <GameGrid keyword={ keyword }/>
         </main>

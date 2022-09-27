@@ -22,17 +22,24 @@ const VideoList = props => {
         <div className="video-list">
             {
                 videos.length>0 
-                ?   videos.map((video, index) => (
-                        <iframe 
-                            className="video-list__item"
-                            src={igdbConfig.videoUrl(video.video_id)}
-                            key={index}
-                            title={video.name}
-                            allowFullScreen
-                        >
-                        </iframe>
-                    ))
-                :   'No trailers'
+                ?   <div className="video-list__grid">
+                    {   
+                        videos.map((video, index) => (
+                            <iframe 
+                                className="video-list__grid-item"
+                                src={igdbConfig.videoUrl(video.video_id)}
+                                key={index}
+                                title={video.name}
+                                allowFullScreen
+                            >
+                            </iframe>
+                        ))
+                    }
+                    </div>
+                :   <span className="video-list__empty">
+                        <i class='video-list__empty-icon bx bxs-invader'></i>
+                        No trailers
+                    </span>
             }
         </div>
     )

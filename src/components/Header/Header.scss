@@ -41,6 +41,14 @@
         &__item {
             font-weight: bold;
             text-transform: uppercase;
+            border: 1px solid var(--secondary-color);
+            padding: .5rem;
+            border-radius: 50%;
+
+            @media screen and (min-width: 468px) {
+                border: none;
+                padding: 0;
+            }
         }
     }
 

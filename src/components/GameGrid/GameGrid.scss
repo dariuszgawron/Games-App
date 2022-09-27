@@ -6,8 +6,12 @@
 
     &__container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: .5rem;
+
+        @media screen and (min-width: 398px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
         @media screen and (min-width: 576px) { 
             grid-template-columns: repeat(3, 1fr);

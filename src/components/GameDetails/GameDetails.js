@@ -106,7 +106,6 @@ const Details = () => {
                                     ?   gameDetails.platforms.map((platform, index) => (
                                             <span className="game-details-data__item game-details-data__item--mark" key={index}>
                                                 {`${platform.name}`}
-                                                {/* <img src={`${igdbConfig.imageUrl(imageSize.thumb, platform.platform_logo.image_id)}`} alt=''/> */}
                                             </span>
                                         ))
                                     :   '---'
@@ -189,7 +188,11 @@ const Details = () => {
                                 Description
                             </h3>
                             <div className="game-details-section__content">
-                                {gameDetails.storyline || 'No description'}
+                                {gameDetails.storyline || 
+                                <span className="game-details-section__empty">
+                                    <i class='game-details-section__empty-icon bx bxs-invader'></i>
+                                    No description
+                                </span>}
                             </div>
                         </div>
                         

@@ -15,8 +15,6 @@ const GameGrid = props => {
 
     useEffect(() => {
         const getGames = async () => {
-            // const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
-            // const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
             const query = (props.keyword)
                 ? `search "${props.keyword}"; fields *, cover.*, platforms.*, platforms.platform_logo.*; limit ${igdbConfig.gridItems};`
                 : `fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; limit ${igdbConfig.gridItems};`;
@@ -31,9 +29,7 @@ const GameGrid = props => {
     const loadMore = async () => {
         const page = currentPage+1;
         setCurrentPage(page);
-        // const keyword = (props.keyword) ? `search "${props.keyword}"; ` : '';
-        const offset = (page-1) * igdbConfig.gridItems;
-        // const query = `${keyword}fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit ${igdbConfig.gridItems};`;
+        const offset = ((page-1) * igdbConfig.gridItems) + 1;
         const query = (props.keyword)
             ? `search "${props.keyword}"; fields *, cover.*, platforms.*, platforms.platform_logo.*; offset ${offset}; limit ${igdbConfig.gridItems};`
             : `fields *, cover.*, platforms.*, platforms.platform_logo.*; sort rating desc; offset ${offset}; limit ${igdbConfig.gridItems};`;
