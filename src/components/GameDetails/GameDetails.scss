@@ -206,6 +206,28 @@
     &__similar {
         grid-area: similar;
     }
+
+    &__loading {
+
+    }
+
+    &__empty {
+        padding: 5rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+
+        &-text {
+            font-size: var(--font-size-2);
+            text-align: center;
+        }
+
+        &-icon {
+            font-size: calc(var(--font-size-1) * 1.3);
+        }
+    }
 }
 
 .chart {

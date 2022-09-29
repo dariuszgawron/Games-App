@@ -1,0 +1,46 @@
+.loader {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.788);
+
+    &__spinner {
+        width: 100px;
+        height: 100px;
+        display: grid;
+        border: 8px solid rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        border-color: rgb(204, 204, 204) rgba(0, 0, 0, 0);
+        animation: spinerRotate 1s infinite linear;
+        
+        &::before,
+        &::after {   
+            content: "";
+            grid-area: 1/1;
+            margin: 1px;
+            border: inherit;
+            border-radius: 50%;
+        }
+        
+        &::before {
+            border-color: var(--primary-color) rgba(0, 0, 0, 0);
+            animation: inherit; 
+            animation-duration: .5s;
+            animation-direction: reverse;
+        }
+
+        &::after {
+            margin: 10px;
+        }  
+    }
+}
+
+@keyframes spinerRotate { 
+    100% {transform: rotate(1turn)}
+}

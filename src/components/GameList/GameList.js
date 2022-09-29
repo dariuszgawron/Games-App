@@ -5,6 +5,7 @@ import { Navigation } from "swiper";
 
 import igdbApi from "../../api/igdbApi";
 
+import Loader from "../Loader/Loader";
 import GameCard from "../GameCard/GameCard";
 
 import "swiper/css";
@@ -13,14 +14,22 @@ import "./GameList.scss";
 
 const GameList = props => {
     const [games, setGames] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navPrevRef = useRef(null);
     const navNextRef = useRef(null);
 
     useEffect(() => {
         const getGames = async () => {
             const queryParams = props.query ? props.query : 'fields *, cover.*, platforms.*, platforms.platform_logo.*; limit 20;';
-            const response = await igdbApi.getGames(queryParams);
-            setGames(response);
+            try {
+                const response = await igdbApi.getGames(queryParams);
+                setGames(response);
+            } catch(error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
         };
         getGames();
     }, [props.query]);
@@ -41,9 +50,13 @@ const GameList = props => {
                 </div>
             </div>
             <div className="section__content">
-                {
-                    games && games.length>0 ? (
-                        <Swiper
+            {
+                loading 
+                ?   <div className="section__loading">
+                        <Loader />
+                    </div>
+                :   games && games.length>0 
+                    ?   <Swiper
                             spaceBetween={10}
                             slidesPerView={1}
                             modules={[Navigation]}
@@ -76,19 +89,17 @@ const GameList = props => {
                             {
                                 games.map((game, index) => (
                                     <SwiperSlide key={index}>
-                                        <div className="media-list__content">
+                                        <div className="game-list__content">
                                             <GameCard game={game} />
                                         </div>
                                     </SwiperSlide>  
                                 ))
                             }
                         </Swiper>
-                    ) : (
-                        <div className="media-list__info">
+                    :   <div className="game-list__info">
                             No data
                         </div>
-                    )  
-                }
+            }
             </div>
         </section>
     )
