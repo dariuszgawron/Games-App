@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 

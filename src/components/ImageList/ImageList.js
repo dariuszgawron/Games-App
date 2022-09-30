@@ -41,7 +41,7 @@ const ImageList = props => {
                 </div>
             :   <span className="image-list__empty">
                     <i class='image-list__empty-icon bx bxs-invader'></i>
-                    No images
+                    There are no images for the selected game
                 </span>
         }
         </div>

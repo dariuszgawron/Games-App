@@ -21,7 +21,7 @@ const navLinks = [
 const Header = () => {
     const { pathname } = useLocation();
 
-    const openSearchModal = event => {
+    const openSearchModal = () => {
         const searchModal = document.getElementById('search-modal');
         searchModal.classList.toggle('modal--active'); 
     };

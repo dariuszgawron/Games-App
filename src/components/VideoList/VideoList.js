@@ -38,7 +38,7 @@ const VideoList = props => {
                     </div>
                 :   <span className="video-list__empty">
                         <i class='video-list__empty-icon bx bxs-invader'></i>
-                        No trailers
+                        There are no videos for the selected game
                     </span>
             }
         </div>
