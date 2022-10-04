@@ -70,7 +70,7 @@ const GameGrid = props => {
                         </div>
                         {
                             totalPages!==0 && currentPage<totalPages && (
-                                <Button onClick={loadMore} class='button--primary button--center'>
+                                <Button onClick={loadMore} className='button--primary button--center'>
                                     Load more
                                 </Button>
                             )

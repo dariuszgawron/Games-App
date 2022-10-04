@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import igdbApi from "../../api/igdbApi";
-import igdbConfig, { imageSize, websitesCategory } from "../../api/igdbConfig";
+import igdbConfig, { imageSize, websitesCategory, ageRating } from "../../api/igdbConfig";
 
 import "./GameDetails.scss";
 
@@ -11,7 +11,7 @@ import ImageList from "../ImageList/ImageList";
 import VideoList from "../VideoList/VideoList";
 import GameList from "../GameList/GameList";
 import ImageModal from "../ImageModal/ImageModal";
-import { hasSelectionSupport } from "@testing-library/user-event/dist/utils";
+// import { hasSelectionSupport } from "@testing-library/user-event/dist/utils";
 
 const getDate = (unixTimestamp) => {
     const months = [
@@ -40,6 +40,7 @@ const Details = () => {
                 involved_companies.*,involved_companies.company.*,
                 game_engines.*,
                 websites.*,
+                age_ratings.*,
                 screenshots.*,
                 videos.*; 
                 where id = ${id};`;
@@ -195,7 +196,7 @@ const Details = () => {
                                 <div className="game-details-section__content">
                                     {gameDetails.storyline || 
                                     <span className="game-details-section__empty">
-                                        <i class='game-details-section__empty-icon bx bxs-invader'></i>
+                                        <i className='game-details-section__empty-icon bx bxs-invader'></i>
                                         No description
                                     </span>}
                                 </div>
@@ -289,7 +290,13 @@ const Details = () => {
                                             </h4>
                                             <div className="game-details-data__items">
                                             {
-                                                '---'
+                                                ('age_ratings' in gameDetails)
+                                                ?   gameDetails.age_ratings.map((rating, index) => (
+                                                        <img className="game-details-data__item" src={`${process.env.PUBLIC_URL}/images/${ageRating[rating.category]}.png`} alt='' key={index}/>
+                                                    ))
+                                                :   <span className="game-details-data__item">
+                                                        ---
+                                                    </span>
                                             }
                                             </div>
                                         </div>
