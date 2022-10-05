@@ -33,6 +33,6 @@ const Modal = props => {
 Modal.propTypes = {
     active: PropTypes.bool.isRequired,
     onClick: PropTypes.func
-}
+};
 
 export default Modal;

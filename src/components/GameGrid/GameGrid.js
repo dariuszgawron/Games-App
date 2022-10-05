@@ -37,7 +37,6 @@ const GameGrid = props => {
     }, [props.keyword]);
 
     const loadMore = async () => {
-        // setLoading(true);
         const page = currentPage + 1;
         const offset = ((page - 1) * igdbConfig.gridItems) + 1;
         const query = (props.keyword)
@@ -49,9 +48,7 @@ const GameGrid = props => {
             setCurrentPage(page);
         } catch (error) {
             setError(error);
-        } finally {
-            // setLoading(false);
-        }
+        } 
     }
 
     return (

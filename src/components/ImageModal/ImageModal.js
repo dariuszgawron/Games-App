@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-// import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 
@@ -18,9 +17,5 @@ const ImageModal = props => {
         </div>
     )
 };
-
-// ImageModal.propTypes = {
-//     title: PropTypes.string.isRequired
-// };
 
 export default ImageModal;

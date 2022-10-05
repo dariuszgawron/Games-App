@@ -11,7 +11,6 @@ import ImageList from "../ImageList/ImageList";
 import VideoList from "../VideoList/VideoList";
 import GameList from "../GameList/GameList";
 import ImageModal from "../ImageModal/ImageModal";
-// import { hasSelectionSupport } from "@testing-library/user-event/dist/utils";
 
 const getDate = (unixTimestamp) => {
     const months = [
@@ -292,7 +291,7 @@ const Details = () => {
                                             {
                                                 ('age_ratings' in gameDetails)
                                                 ?   gameDetails.age_ratings.map((rating, index) => (
-                                                        <img className="game-details-data__item" src={`${process.env.PUBLIC_URL}/images/${ageRating[rating.category]}.png`} alt='' key={index}/>
+                                                        <img className="game-details-data__item game-details-data__item--small" src={`${process.env.PUBLIC_URL}/images/${ageRating[rating.rating]}.png`} alt='Age rating' key={index}/>
                                                     ))
                                                 :   <span className="game-details-data__item">
                                                         ---
