@@ -28,7 +28,7 @@ const HeroSlide = props => {
                         ('genres' in props.game)
                         ?   props.game.genres.map((genre, index) => (
                                 <span className="hero-slide__genres-item hero-slide__genres-item--mark" key={index}>
-                                    {`${genre.name}`}
+                                    {genre.name}
                                 </span>
                             ))
                         :   '---'
@@ -51,7 +51,11 @@ const HeroSlide = props => {
                                             a 15.9155 15.9155 0 0 1 0 31.831
                                             a 15.9155 15.9155 0 0 1 0 -31.831"/>
                                     <text className="hero-chart-circle__title" x="18" y="21.55">
-                                        {props.game.rating ? Math.round(props.game.rating) : 'N/A'}
+                                    {
+                                        props.game.rating 
+                                        ? Math.round(props.game.rating) 
+                                        : 'N/A'
+                                    }
                                     </text>
                                 </svg>
                                 <h4 className="hero-chart__description">
@@ -75,7 +79,11 @@ const HeroSlide = props => {
                                             a 15.9155 15.9155 0 0 1 0 31.831
                                             a 15.9155 15.9155 0 0 1 0 -31.831"/>
                                     <text className="hero-chart-circle__title" x="50%" y="22.25">
-                                        {props.game.aggregated_rating ? Math.round(props.game.aggregated_rating) : 'N/A'}
+                                    {   
+                                        props.game.aggregated_rating 
+                                        ? Math.round(props.game.aggregated_rating) 
+                                        : 'N/A'
+                                    }
                                     </text>
                                 </svg>
                                 <h4 className="hero-chart__description">

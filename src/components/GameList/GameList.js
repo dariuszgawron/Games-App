@@ -98,7 +98,9 @@ const GameList = props => {
                         </Swiper>
                     :   <div className="game-list__info">
                             <i className='game-list__empty-icon bx bx-shocked'></i>
-                            <span className="game-list__empty-text">There is no data to display</span>
+                            <span className="game-list__empty-text">
+                                There is no data to display
+                            </span>
                         </div>
             }
             </div>

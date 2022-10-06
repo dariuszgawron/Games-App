@@ -20,27 +20,27 @@ const VideoList = props => {
 
     return (
         <div className="video-list">
-            {
-                videos.length>0 
-                ?   <div className="video-list__grid">
-                    {   
-                        videos.map((video, index) => (
-                            <iframe 
-                                className="video-list__grid-item"
-                                src={igdbConfig.videoUrl(video.video_id)}
-                                key={index}
-                                title={video.name}
-                                allowFullScreen
-                            >
-                            </iframe>
-                        ))
-                    }
-                    </div>
-                :   <span className="video-list__empty">
-                        <i className='video-list__empty-icon bx bxs-invader'></i>
-                        There are no videos for the selected game
-                    </span>
-            }
+        {
+            (videos.length>0) 
+            ?   <div className="video-list__grid">
+                {   
+                    videos.map((video, index) => (
+                        <iframe 
+                            className="video-list__grid-item"
+                            src={igdbConfig.videoUrl(video.video_id)}
+                            key={index}
+                            title={video.name}
+                            allowFullScreen
+                        >
+                        </iframe>
+                    ))
+                }
+                </div>
+            :   <span className="video-list__empty">
+                    <i className='video-list__empty-icon bx bxs-invader'></i>
+                    There are no videos for the selected game
+                </span>
+        }
         </div>
     )
 };

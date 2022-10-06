@@ -73,13 +73,11 @@ const Details = () => {
                 :   gameDetails
                     ?   <div className="game-details__container">
                             {
-                                ('cover' in gameDetails && 'image_id' in gameDetails.cover) ? (
-                                    <img className="game-details__cover" src={igdbConfig.imageUrl(imageSize.coverBig, gameDetails.cover.image_id)} alt={`${gameDetails.name} - cover`} />
-                                ) : (
-                                    <div className="game-details__backdrop">
+                                ('cover' in gameDetails && 'image_id' in gameDetails.cover) 
+                                ?   <img className="game-details__cover" src={igdbConfig.imageUrl(imageSize.coverBig, gameDetails.cover.image_id)} alt={`${gameDetails.name} - cover`} />
+                                :   <div className="game-details__backdrop">
                                         <i className="game-details__backdrop-icon bx bx-game"></i>
                                     </div>
-                                )
                             }
                             <div className="game-details__info">
                                 <h2 className="game-details__title game-details__title--center">{gameDetails.name}
@@ -94,7 +92,7 @@ const Details = () => {
                                         ('genres' in gameDetails)
                                         ?   gameDetails.genres.map((genre, index) => (
                                                 <span className="game-details-data__item game-details-data__item--mark" key={index}>
-                                                    {`${genre.name}`}
+                                                    {genre.name}
                                                 </span>
                                             ))
                                         :   '---'
@@ -110,7 +108,7 @@ const Details = () => {
                                         ('platforms' in gameDetails)
                                         ?   gameDetails.platforms.map((platform, index) => (
                                                 <span className="game-details-data__item game-details-data__item--mark" key={index}>
-                                                    {`${platform.name}`}
+                                                    {platform.name}
                                                 </span>
                                             ))
                                         :   '---'
@@ -176,7 +174,10 @@ const Details = () => {
                                                             a 15.9155 15.9155 0 0 1 0 31.831
                                                             a 15.9155 15.9155 0 0 1 0 -31.831"/>
                                                     <text className="chart-circle__title" x="50%" y="20.75">
-                                                        {gameDetails.aggregated_rating ? Math.round(gameDetails.aggregated_rating) : 'N/A'}
+                                                    {   gameDetails.aggregated_rating 
+                                                        ? Math.round(gameDetails.aggregated_rating) 
+                                                        : 'N/A'
+                                                    }
                                                     </text>
                                                 </svg>
                                                 <h4 className="chart__description">
@@ -350,7 +351,9 @@ const Details = () => {
                         </div>
                     :   <div className="game-details__empty">
                             <i className='game-details__empty-icon bx bx-shocked'></i>
-                            <span className="game-details__empty-text">The specified game was not found</span>
+                            <span className="game-details__empty-text">
+                                The specified game was not found
+                            </span>
                         </div>
             }
             <ImageModal />

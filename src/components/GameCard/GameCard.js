@@ -11,24 +11,23 @@ const GameCard = props => {
         <div className="game-card">
             <Link className="game-card__link" to={`/games/${props.game.id}`}>
                 {
-                    ('cover' in props.game) ? (
-                        <img className="game-card__cover" src={igdbConfig.imageUrl(imageSize.coverBig, props.game.cover.image_id)} alt={`${props.game.name} - cover`} />
-                    ) : (
-                        <div className="game-card__backdrop">
+                    ('cover' in props.game) 
+                    ?   <img className="game-card__cover" src={igdbConfig.imageUrl(imageSize.coverBig, props.game.cover.image_id)} alt={`${props.game.name} - cover`} />
+                    :   <div className="game-card__backdrop">
                             <i className="game-card__backdrop-icon bx bx-game"></i>
                         </div>
-                    )
                 }
                 <div className="game-card__data">
                     <div className="game-card__info">
                         <div className="game-card__platforms">
-                            {   
-                                'platforms' in props.game 
-                                ?   props.game.platforms.map((platform, index) => (
-                                        <span className="game-card__platforms-item" key={index}>{platform.abbreviation} </span>
-                                    ))
-                                : '---'
-                            }
+                        {   
+                            ('platforms' in props.game) 
+                            ?   props.game.platforms.map((platform, index) => (
+                                    <span className="game-card__platforms-item" key={index}>{platform.abbreviation} 
+                                    </span>
+                                ))
+                            :   '---'
+                        }
                         </div>
                         <div className="game-card__rating">
                             <span className="game_card__rating-text">
