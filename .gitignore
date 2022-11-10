@@ -22,3 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
+src/firebase.js
+.firebase/hosting.YnVpbGQ.cache
+firebase.json
+.firebaserc
+.gitignore
+.gitignore
